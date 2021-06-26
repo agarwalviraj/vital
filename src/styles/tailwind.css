@@ -1,0 +1,41 @@
+/* @prettier-ignore */
+@tailwind base;
+
+/* Your own custom base styles */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Your own custom component styles */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
+@layer base {
+  @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
+  * {
+    font-family: "Nunito Sans", sans-serif;
+  }
+}
+
+@layer utilities {
+  .textInput {
+    @apply w-full;
+    @apply border-b-2 border-secondary rounded-sm;
+  }
+  .actionBtn {
+    @apply select-none;
+    @apply border-secondary border-2;
+    @apply text-secondary;
+    @apply uppercase;
+    @apply rounded-sm;
+    @apply font-semibold;
+    @apply px-4 py-2;
+    @apply w-max;
+    @apply focus:outline-none;
+    @apply transition-colors hover:bg-secondary hover:text-white cursor-pointer;
+  }
+}
