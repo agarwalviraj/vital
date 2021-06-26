@@ -1,0 +1,113 @@
+.box {
+  display: flex;
+  height: 450px;
+  position: relative;
+  width: 350px;
+  justify-content: center;
+  background-color: #83bcca;
+  border-style: none;
+  align-content: center;
+  margin-top: 120px;
+  float: right;
+  margin-left: 67%;
+  box-shadow: 0px -2px 5px #afe4f0, -2px 0px 5px #afe4f0, 2px 0px 5px #044e61,
+    0px 2px 5px #13505f;
+  z-index: -1000;
+  float: left;
+}
+
+.img {
+  position: relative;
+  display: flex;
+  height: 200px;
+  border-style: solid;
+  justify-content: left;
+  width: 200px;
+  border-radius: 50%;
+  border-color: #28527a;
+  margin-top: 15%;
+  margin-left: -830px;
+  float: left;
+}
+
+.docN {
+  display: inline-flex;
+  color: #28527a;
+  margin-left: -840px;
+  margin-top: 31%;
+  justify-self: center;
+  font: 30px "Poppins";
+  font-weight: 600;
+  position: relative;
+  /* font-size: 900; */
+}
+
+.age {
+  font: 20px "Poppins";
+  position: absolute;
+  display: inline-flex;
+  float: left;
+  margin-top: 15px;
+  color: #28527a;
+  margin-left: -240px;
+}
+
+.imgp {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+.special {
+  display: block;
+
+  font: 20px "Poppins";
+  color: #28527a;
+  margin-left: 14px;
+  margin-top: 140px;
+  position: absolute;
+}
+
+.qualif {
+  display: block;
+  font: 20px "Poppins";
+  color: #28527a;
+  margin-left: -101px;
+  margin-top: 70px;
+  position: absolute;
+}
+
+.experience {
+  display: block;
+  font: 20px "Poppins";
+  color: #28527a;
+  margin-left: 20px;
+  margin-top: 220px;
+  position: absolute;
+}
+
+.gear {
+  height: 40px;
+}
+
+.bin {
+  margin: 10px;
+  margin-right: -270px;
+  border-style: none;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px -2px 5px #afe4f0, -2px 0px 5px #afe4f0, 2px 0px 5px #044e61,
+    0px 2px 5px #13505f;
+  transition: 0.2s;
+  background-color: #83bcca;
+}
+
+.bin:hover {
+  box-shadow: 0px -2px 5px#045c72, -2px 0px 5px #045c72, 2px 0px 5px #afe4f0,
+    0px 2px 5px #afe4f0;
+  cursor: pointer;
+}
+
+.layer1 {
+  position: relative;
+}
