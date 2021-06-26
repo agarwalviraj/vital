@@ -1,10 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Globalstyles } from '../styles/globalStyles'
 
 const AboutScreen = () => {
     return (
-        <View style={Globalstyles.container}>
+        <View>
             <Text>AboutScreen</Text>
         </View>
     )

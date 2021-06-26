@@ -1,50 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings } from 'react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
 import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialButton';
 import Axios from 'axios'
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage'
-import { Globalstyles } from '../styles/globalStyles';
-import {alertpatients1} from '../patients/AlertPatients1';
-import messaging from '@react-native-firebase/messaging';
-
-// I am using Device info
-import firebase from '../utils/firebase';
-
 
 const LoginScreen = ({ navigation }) => {
-    const [state, setState] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    useEffect(() => {
-        AsyncStorage.getItem('token').then(value => {
-            setState(value);
-            //console.log('token',value);
-        });
-        if(state!=null){
-            navigation.replace('Home');
-        }
-        
-       
 
-        messaging()
-        .getToken()
-        .then(token => {
-          console.log('fcmtoken',token);
-        });
-  
-      // If using other push notification providers (ie Amazon SNS, etc)
-      // you may need to get the APNs token instead for iOS:
-      // if(Platform.OS == 'ios') { messaging().getAPNSToken().then(token => { return saveTokenToDatabase(token); }); }
-  
-      // Listen to whether the token changes
-      
-    },[])
-
-    
 
     const login = async (email, password) => {
         const data = {
@@ -59,13 +26,9 @@ const LoginScreen = ({ navigation }) => {
                 'https://hackvital.herokuapp.com/user/login',
                 data
             );
-            //console.log(response)
+            console.log(response)
             AsyncStorage.setItem("token", response.data.token)
-            AsyncStorage.setItem("email",email);
-            console.log(email);
-            
-            navigation.replace('Home');
-            // DevSettings.reload();
+            DevSettings.reload();
 
 
 
@@ -93,10 +56,13 @@ const LoginScreen = ({ navigation }) => {
 
     return (
 
-        <View style={Globalstyles.container}>
+        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#83BCCA' }}>
+            <View style={{ top: 0.015 * windowHeight, left: 0.1 * windowWidth }}>
+                <Image
+                    source={require('../assets/images/Appicon.png')} />
+            </View>
 
-
-            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#CDE8ED', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#83BCCA', alignItems: 'center' }}>
 
                 <View style={styles.card}>
                     <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 22, color: '#28527a', margin: 25 }}>Login Into Vital+</Text>
@@ -104,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
                         labelValue={email}
                         onChangeText={(userEmail) => setEmail(userEmail)}
                         placeholderText="Email"
-                        iconType="user-tie"
+                        iconType="user"
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -114,14 +80,11 @@ const LoginScreen = ({ navigation }) => {
                         labelValue={password}
                         onChangeText={(userPassword) => setPassword(userPassword)}
                         placeholderText="Password"
-                        iconType="key"
+                        iconType="lock"
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity style={{ borderRadius: 11, elevation: 6, paddingHorizontal: 9, paddingVertical: 3, backgroundColor: '#CDE8ED', marginTop: 20 }}
-                        onPress={() => {
-                            login(email, password)
-                            //navigation.navigate('Signup')
-                        }}>
+                    <TouchableOpacity style={{ borderRadius: 11, elevation: 6, paddingHorizontal: 9, paddingVertical: 3, backgroundColor: '#83BCCA', marginTop: 20 }}
+                        onPress={() => { login(email, password) }}>
                         <Text style={{ color: '#28527A', fontWeight: '600', fontSize: 16, fontFamily: 'Poppins-SemiBold', fontWeight: '600' }}>Submit</Text>
                     </TouchableOpacity>
 
@@ -144,7 +107,7 @@ const styles = StyleSheet.create({
         width: 0.8 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#CDE8ED',
+        backgroundColor: '#83BCCA',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: '#333',
         shadowOpacity: 0.15,

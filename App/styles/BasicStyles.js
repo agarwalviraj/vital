@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import { windowWidth } from '../utils/Dimensions';
 
-export const Cardbtn = styled.View`
+export const Container = styled.View`
 display: flex;
-    height: 0.4*${windowWidth};
-    width: 0.4*${windowWidth};
-    border-radius: 6;
-    elevation: 6;
+    height: 2;
+    width: 500px;
     justify-content: center;
-    background-color: #CDE8ED;
+    background-color: #83BCCA;
     border-style: solid;
     align-content: center;
     margin-top: 150px;

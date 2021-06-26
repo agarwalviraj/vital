@@ -1,70 +1,27 @@
-import React, { useContext, useState, useCallback, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { TouchableOpacity, Modal, View, Image, StyleSheet, Text, Avatar } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { windowWidth } from '../utils/Dimensions';
 import { Neomorph } from 'react-native-neomorph-shadows';
-import { useSocket } from "../contexts/socketContext";
 
 
 
 const PostCard = ({ item, onPress }) => {
-      const { _id, name, hospitalName, age, sex, desc, image, vitals } = item;
- const socket = useSocket();
-  const [data, setData] = useState({
-    BloodPressure: 0,
-    BloodO2: 0,
-    Temperature: 0,
-    HeartRate: 0,
-  });
- const updateData = useCallback(
-    (newData, vitalName) => {
-      const newObj = data;
-      newObj[vitalName] = newData.value;
-      setData((oldData) => ({ ...oldData, ...newObj }));
-    },
-    [setData]
-  );
-    useEffect(() => {
-    if (socket) {
-      if (vitals.includes("BloodPressure"))
-        socket.on(`${name}BloodPressure`, (newData) =>
-          updateData(newData, "BloodPressure")
-        );
 
-      if (vitals.includes("BloodO2"))
-        socket.on(`${name}BloodO2`, (newData) =>
-          updateData(newData, "BloodO2")
-        );
 
-      if (vitals.includes("Temperature"))
-        socket.on(`${name}Temperature`, (newData) =>
-          updateData(newData, "Temperature")
-        );
-
-      if (vitals.includes("HeartRate"))
-        socket.on(`${name}HeartRate`, (newData) =>
-          updateData(newData, "HeartRate")
-        );
-
-      // socket.on("TimBloodPressure", (newData) => updateData(newData));
-    }
-    return () => socket.off("TimBloodPressure");
-  }, [socket, updateData]);
     return (
         <View style={styles.card}>
 
             <Neomorph
-                darkShadowColor="#044e61" // <- set this
-                lightShadowColor="#afe4" // <- this
+                darkShadowColor="#afe4" // <- set this
+                lightShadowColor="#044e61" // <- this
                 style={{
                     marginTop: 20,
-                    shadowOpacity: 0.48, // <- and this or yours opacity
-                    shadowRadius: 5,
-                    borderRadius: 5,
-                    shadowOffset:{height:5,
-                    width:5,},
-                    backgroundColor: '#CDE8ED',
+                    shadowOpacity: 0.35, // <- and this or yours opacity
+                    shadowRadius: 15,
+                    borderRadius: 30,
+                    backgroundColor: '#83BCCA',
                     width: 0.89 * windowWidth,
                     height: 200,
                     padding: 15
@@ -89,22 +46,22 @@ const PostCard = ({ item, onPress }) => {
 
                             </View>
                         </View>
-                        <View style={{ flexDirection: 'row', margin: 10, marginLeft:20 }}>
-                            <View style={{ flexDirection: 'column', marginTop: 10,alignItems:'center', }}>
+                        <View style={{ flexDirection: 'row', margin: 10 }}>
+                            <View style={{ flexDirection: 'column', marginTop: 10 }}>
                                 <Text style={{ fontSize: 14, fontWeight: '600' }}>BP:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.BloodPressure}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.bloodPress}</Text>
                             </View>
-                            <View style={{ flexDirection: 'column', margin: 10, marginLeft:20 }}>
+                            <View style={{ flexDirection: 'column', margin: 10 }}>
                                 <Text style={{ fontSize: 14, fontWeight: '600' }}>Blood O2:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.BloodO2}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.bloodO2}</Text>
                             </View>
                             <View style={{ flexDirection: 'column', margin: 10 }}>
                                 <Text style={{ fontSize: 14, fontWeight: '600' }}>Temperature:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.Temperature}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.temp}</Text>
                             </View>
                             <View style={{ flexDirection: 'column', margin: 10 }}>
                                 <Text style={{ fontSize: 14, fontWeight: '600' }}>Heart rate: </Text>
-                                <Text style={{ fontSize: 12 }}>{data.HeartRate}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.heartRate}</Text>
                             </View>
                         </View>
                     </View>
@@ -122,7 +79,7 @@ const styles = StyleSheet.create({
         width: 0.97 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#CDE8ED',
+        backgroundColor: '#83BCCA',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,

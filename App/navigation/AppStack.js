@@ -19,10 +19,7 @@ import TemperatureScreen from '../screens/TemperatureScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import EditDrProfileScreen from '../screens/EditDrProfileScreen';
 import AboutScreen from '../screens/AboutScreen';
-import { DrawerContent } from '../components/DrawerContent';
-import LoginScreen from '../screens/LoginScreen';
-import AsyncStorage from '@react-native-community/async-storage'
-import SignupScreen from '../screens/SignupScreen';
+import { DrawerContent } from '../components/DrawerContent'
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -30,7 +27,6 @@ const Drawer = createDrawerNavigator();
 
 
 const HomeStack = ({ navigation }) => (
-    
     <Stack.Navigator>
         <Stack.Screen name='Home' component={HomeScreen}
             options={{
@@ -41,29 +37,29 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#CDE8ED',
+                    backgroundColor: '#83BCCA',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED' }}>
+                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA' }}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
                             elevation={8}
-                            backgroundColor="#CDE8ED"
+                            backgroundColor="#83BCCA"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
                     </View>
                 ),
                 headerLeft: () => (
-                    <View style={{ marginLeft: 10, backgroundColor: '#CDE8ED' }}>
+                    <View style={{ marginLeft: 10, backgroundColor: '#83BCCA' }}>
                         <MaterialCommunityIcons.Button
                             name="menu"
                             size={35}
                             elevation={8}
-                            backgroundColor="#CDE8ED"
+                            backgroundColor="#83BCCA"
                             color="#F87677"
                             onPress={() => navigation.toggleDrawer()}
                         />
@@ -81,16 +77,17 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#CDE8ED',
+                    backgroundColor: '#83BCCA',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED'}}>
+                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA', elevation: 8 }}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
-                            backgroundColor="#CDE8ED"
+                            elevation={8}
+                            backgroundColor="#83BCCA"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
@@ -107,85 +104,23 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#CDE8ED',
+                    backgroundColor: '#83BCCA',
                     shadowColor: '#fff',
-                    elevation:10
-                    
+                    elevation: 10,
                 },
 
             }} />
-        <Stack.Screen name='BpScreen' component={BPScreen}
-        options={{
-            headerTitle: 'Blood Pressure Report',
-                headerTitleAlign: 'center',
-                headerTitleStyle: {
-
-
-                    fontSize: 18,
-                },
-                headerStyle: {
-                    backgroundColor: '#CDE8ED',
-                    shadowColor: '#fff',
-                    elevation: 10,
-                },
-        }} />
-        <Stack.Screen name='BloodScreen' component={BloodScreen}
-        options={{
-            headerTitle: 'Blood Oxyzen Report',
-                headerTitleAlign: 'center',
-                headerTitleStyle: {
-
-
-                    fontSize: 18,
-                },
-                headerStyle: {
-                    backgroundColor: '#CDE8ED',
-                    shadowColor: '#fff',
-                    elevation: 10,
-                },
-        }}  />
-        <Stack.Screen name='TemperatureScreen' component={TemperatureScreen}
-        options={{
-            headerTitle: 'Temperature Report',
-                headerTitleAlign: 'center',
-                headerTitleStyle: {
-
-
-                    fontSize: 18,
-                },
-                headerStyle: {
-                    backgroundColor: '#CDE8ED',
-                    shadowColor: '#fff',
-                    elevation: 10,
-                },
-        }}  />
-
-<Stack.Screen name='HeartrateScreen' component={HeartrateScreen}
-        options={{
-            headerTitle: 'Heartrate Report',
-                headerTitleAlign: 'center',
-                headerTitleStyle: {
-
-
-                    fontSize: 18,
-                },
-                headerStyle: {
-                    backgroundColor: '#CDE8ED',
-                    shadowColor: '#fff',
-                    elevation: 10,
-                },
-        }}  />
-
+        <Stack.Screen name='BpScreen' component={BPScreen} />
     </Stack.Navigator>
 );
 
-// const HistoryStack = ({ navigation }) => (
-//     <Stack.Navigator>
-//         <Stack.Screen name='History' component={HistoryScreen} />
-//         <Stack.Screen name='PatientProfile1' component={PatientProfileScreen} />
-//         <Stack.Screen name='Alert1' component={AlertScreen} />
-//     </Stack.Navigator>
-// );
+const HistoryStack = ({ navigation }) => (
+    <Stack.Navigator>
+        <Stack.Screen name='History' component={HistoryScreen} />
+        <Stack.Screen name='PatientProfile1' component={PatientProfileScreen} />
+        <Stack.Screen name='Alert1' component={AlertScreen} />
+    </Stack.Navigator>
+);
 
 const ProfileStack = ({ navigation }) => (
     <Stack.Navigator>
@@ -198,29 +133,29 @@ const ProfileStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#CDE8ED',
+                    backgroundColor: '#83BCCA',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED' }}>
+                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA' }}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
                             elevation={8}
-                            backgroundColor="#CDE8ED"
+                            backgroundColor="#83BCCA"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
                     </View>
                 ),
                 headerLeft: () => (
-                    <View style={{ marginLeft: 10, backgroundColor: '#CDE8ED' }}>
+                    <View style={{ marginLeft: 10, backgroundColor: '#83BCCA' }}>
                         <MaterialCommunityIcons.Button
                             name="menu"
                             size={35}
                             elevation={8}
-                            backgroundColor="#CDE8ED"
+                            backgroundColor="#83BCCA"
                             color="#F87677"
                             onPress={() => navigation.toggleDrawer()}
                         />
@@ -232,57 +167,56 @@ const ProfileStack = ({ navigation }) => (
     </Stack.Navigator>
 );
 
-// const HomeTabNavigator = ({ navigation }) => (
-//     <Tab.Navigator
-//         initialRouteName="Home"
+const HomeTabNavigator = ({ navigation }) => (
+    <Tab.Navigator
+        initialRouteName="Home"
 
-//         activeColor="#f0edf6"
-//         inactiveColor="#589EE1"
-//         barStyle={{ paddingBottom: 0, backgroundColor: '#498AA3' }}
-//     >
-//         <Tab.Screen name='Home' component={HomeStack} options={({ route }) => ({
-//             tabBarLabel: 'Home',
-//             // tabBarVisible: route.state && route.state.index === 0,
-//             tabBarIcon: () => (
-//                 <MaterialCommunityIcons
-//                     name="home-outline"
-//                     color='black'
-//                     size={25}
-//                 />
-//             ),
-//         })} />
-//         <Tab.Screen name='History' component={HistoryStack} options={({ route }) => ({
-//             tabBarLabel: 'History',
-//             // tabBarVisible: route.state && route.state.index === 0,
-//             tabBarIcon: () => (
-//                 <MaterialCommunityIcons
-//                     name="history"
-//                     color='black'
-//                     size={25}
-//                 />
-//             ),
-//         })} />
+        activeColor="#f0edf6"
+        inactiveColor="#589EE1"
+        barStyle={{ paddingBottom: 0, backgroundColor: '#498AA3' }}
+    >
+        <Tab.Screen name='Home' component={HomeStack} options={({ route }) => ({
+            tabBarLabel: 'Home',
+            // tabBarVisible: route.state && route.state.index === 0,
+            tabBarIcon: () => (
+                <MaterialCommunityIcons
+                    name="home-outline"
+                    color='black'
+                    size={25}
+                />
+            ),
+        })} />
+        <Tab.Screen name='History' component={HistoryStack} options={({ route }) => ({
+            tabBarLabel: 'History',
+            // tabBarVisible: route.state && route.state.index === 0,
+            tabBarIcon: () => (
+                <MaterialCommunityIcons
+                    name="history"
+                    color='black'
+                    size={25}
+                />
+            ),
+        })} />
 
-//         <Tab.Screen name='Profile' component={ProfileStack} options={({ route }) => ({
-//             tabBarLabel: 'Profile',
-//             // tabBarVisible: route.state && route.state.index === 0,
-//             tabBarIcon: () => (
-//                 <FontAwesome5
-//                     name="user"
-//                     color='black'
-//                     size={25}
-//                 />
-//             ),
-//         })} />
-//     </Tab.Navigator>
+        <Tab.Screen name='Profile' component={ProfileStack} options={({ route }) => ({
+            tabBarLabel: 'Profile',
+            // tabBarVisible: route.state && route.state.index === 0,
+            tabBarIcon: () => (
+                <FontAwesome5
+                    name="user"
+                    color='black'
+                    size={25}
+                />
+            ),
+        })} />
+    </Tab.Navigator>
 
-// )
+)
 
 const AppStack = ({ navigation }) => {
     return (
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-            <Drawer.Screen name="Home" component={HomeStack} />
-            <Drawer.Screen name="Profile" component={ProfileStack} />
+            <Drawer.Screen name="HomeDrawer" component={HomeTabNavigator} />
             <Drawer.Screen name="About" component={AboutScreen} />
         </Drawer.Navigator>
     );

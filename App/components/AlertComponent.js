@@ -13,7 +13,7 @@ import { alertpatients } from '../patients/AlertPatients';
 import { Neomorph } from 'react-native-neomorph-shadows';
 
 
-const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) => {
+const AlertComponent = ({ item, onPress }) => {
 
     const [channelId, setChannelId] = useState("");
     React.useEffect(() => {
@@ -76,18 +76,16 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
 
 
     return (
-        
         <View style={{ alignItems: 'center' }}>
             <View style={{ height: 50, width: windowWidth }}>
 
             </View>
-            <TouchableOpacity onPress={onPress}>
             <Neomorph
                 darkShadowColor="#afe4" // <- set this
                 lightShadowColor="#044e61" // <- this
                 style={styles.mainNeomorph}
             >
-                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column' }}>
                     <View style={styles.patientInfoWrapper}>
                         <View style={{ width: 80, height: 80, borderRadius: 40, marginRight: 10, flex: 1 }}>
                             <Image style={{ width: 80, height: 80, borderRadius: 40 }}
@@ -106,11 +104,13 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                     </View>
 
                 </View>
-                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center',marginLeft:35 }}>
-                    <View style={{ flexDirection: 'row', alignItems:'center', }}>
-                        <View style={styles.cardBtn}>
-                        <TouchableOpacity onPress={onPress1}>
-
+                <View style={{ flexDirection: 'column' }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Neomorph
+                            darkShadowColor="#afe4" // <- set this
+                            lightShadowColor="#044e61" // <- this
+                            style={styles.cardNeomorph}
+                        >
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Boilingpoint size={30} /> */}
@@ -122,11 +122,12 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                     <Text style={styles.subText}>{item.bloodPress}</Text>
                                 </View>
                             </View>
-                            </TouchableOpacity>
-                        </View>
-                   
-                        <View style={styles.cardBtn}>
-                        <TouchableOpacity onPress={ onPress2}>
+                        </Neomorph>
+                        <Neomorph
+                            darkShadowColor="#afe4" // <- set this
+                            lightShadowColor="#044e61" // <- this
+                            style={styles.cardNeomorph}
+                        >
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Blood size={30} /> */}
                                 <Image style={{ height: 75, width: 85 }}
@@ -137,15 +138,15 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                     <Text style={styles.subText}>{item.bloodO2}</Text>
                                 </View>
                             </View>
-                            </TouchableOpacity>
+                        </Neomorph>
 
-                        </View>
-                    
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 35, }}>
-                    
-                        <View style={styles.cardBtn}>
-                        <TouchableOpacity onPress={onPress3}>
+                    <View style={{ flexDirection: 'row', marginBottom: 35 }}>
+                        <Neomorph
+                            darkShadowColor="#afe4" // <- set this
+                            lightShadowColor="#044e61" // <- this
+                            style={styles.cardNeomorph}
+                        >
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Temp size={30} /> */}
@@ -157,12 +158,12 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                     <Text style={styles.subText}>{item.temp}</Text>
                                 </View>
                             </View>
-                            </TouchableOpacity>
-                        </View>
-                    
-                    
-                        <View style={styles.cardBtn}>
-                        <TouchableOpacity onPress={onPress4}>
+                        </Neomorph>
+                        <Neomorph
+                            darkShadowColor="#afe4" // <- set this
+                            lightShadowColor="#044e61" // <- this
+                            style={styles.cardNeomorph}
+                        >
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Heartrate size={30} /> */}
                                 <Image style={{ height: 75, width: 80 }}
@@ -173,23 +174,18 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                     <Text style={styles.subText}>{item.heartRate}</Text>
                                 </View>
                             </View>
-                            </TouchableOpacity>
-                        </View>
-                   
+                        </Neomorph>
 
                     </View>
                 </View>
-                
-            </Neomorph>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
+                <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
                     <Text>send message</Text>
                 </TouchableOpacity>
+            </Neomorph>
             <View style={{ height: 50, width: windowWidth }}>
 
             </View>
         </View>
-        
     )
 }
 
@@ -200,7 +196,7 @@ const styles = StyleSheet.create({
         width: 0.85 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#CDE8ED',
+        backgroundColor: '#83BCCA',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
@@ -211,11 +207,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     cardBtn: {
-        width: 0.34 * windowWidth,
-        height: 0.34 * windowWidth,
+        width: 0.3 * windowWidth,
+        height: 0.3 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#CDE8ED',
+        backgroundColor: '#83BCCA',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
@@ -241,7 +237,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         padding: 15,
         marginHorizontal: 10,
-        backgroundColor: '#CDE8ED',
+        backgroundColor: '#83BCCA',
         width: 0.376 * windowWidth,
         height: 0.38 * windowWidth,
         justifyContent: 'center'
@@ -252,8 +248,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.35, // <- and this or yours opacity
         shadowRadius: 15,
         borderRadius: 30,
-        padding: 25,
-        backgroundColor: '#CDE8ED',
+        padding: 15,
+        backgroundColor: '#83BCCA',
         width: 0.91 * windowWidth,
         height: 500,
 

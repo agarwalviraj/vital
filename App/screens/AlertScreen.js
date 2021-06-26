@@ -6,11 +6,8 @@ import { SearchBar } from 'react-native-elements';
 import PostCard from '../components/PostCard';
 import AlertComponent from '../components/AlertComponent';
 import { alertpatients } from '../patients/AlertPatients';
-import { Globalstyles } from '../styles/globalStyles';
-import {alertpatients1} from '../patients/AlertPatients1';
 
-
-const AlertScreen = ({navigation}) => {
+const AlertScreen = () => {
 
     // const alertpatients = [
     //     {
@@ -95,7 +92,7 @@ const AlertScreen = ({navigation}) => {
 
     return (
 
-        <View style={Globalstyles.container}>
+        <View style={styles.container}>
             <FlatList
                 data={alertpatients}
 
@@ -105,11 +102,6 @@ const AlertScreen = ({navigation}) => {
                     <AlertComponent
                         item={item}
                         onPress={() => navigation.navigate('PatientProfile', { data: item })}
-                        onPress1={() => navigation.navigate('BpScreen',{name:item.name})}
-                        onPress2={() => navigation.navigate('BloodScreen',{name:item.name})}
-                        onPress3={() => navigation.navigate('TemperatureScreen',{name:item.name})}
-                        onPress4={() => navigation.navigate('HeartrateScreen',{name:item.name})}
-
                     />
 
 
@@ -129,5 +121,10 @@ const AlertScreen = ({navigation}) => {
 export default AlertScreen
 
 const styles = StyleSheet.create({
-
+    container: {
+        backgroundColor: '#83BCCA',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 })

@@ -1,6 +1,4 @@
 rootProject.name = 'vital'
-include ':react-native-device-token'
-project(':react-native-device-token').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-token/android')
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 include ':react-native-vector-icons'
