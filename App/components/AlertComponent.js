@@ -85,7 +85,7 @@ const AlertComponent = ({ item, onPress }) => {
                 lightShadowColor="#044e61" // <- this
                 style={styles.mainNeomorph}
             >
-                <View style={{ flexDirection: 'column' }}>
+                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <View style={styles.patientInfoWrapper}>
                         <View style={{ width: 80, height: 80, borderRadius: 40, marginRight: 10, flex: 1 }}>
                             <Image style={{ width: 80, height: 80, borderRadius: 40 }}
@@ -104,13 +104,9 @@ const AlertComponent = ({ item, onPress }) => {
                     </View>
 
                 </View>
-                <View style={{ flexDirection: 'column' }}>
+                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Neomorph
-                            darkShadowColor="#afe4" // <- set this
-                            lightShadowColor="#044e61" // <- this
-                            style={styles.cardNeomorph}
-                        >
+                        <View style={styles.cardBtn}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Boilingpoint size={30} /> */}
@@ -122,12 +118,8 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.bloodPress}</Text>
                                 </View>
                             </View>
-                        </Neomorph>
-                        <Neomorph
-                            darkShadowColor="#afe4" // <- set this
-                            lightShadowColor="#044e61" // <- this
-                            style={styles.cardNeomorph}
-                        >
+                        </View>
+                        <View style={styles.cardBtn}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Blood size={30} /> */}
                                 <Image style={{ height: 75, width: 85 }}
@@ -138,15 +130,11 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.bloodO2}</Text>
                                 </View>
                             </View>
-                        </Neomorph>
+                        </View>
 
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 35 }}>
-                        <Neomorph
-                            darkShadowColor="#afe4" // <- set this
-                            lightShadowColor="#044e61" // <- this
-                            style={styles.cardNeomorph}
-                        >
+                    <View style={{ flexDirection: 'row', marginBottom: 35, }}>
+                        <View style={styles.cardBtn}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Temp size={30} /> */}
@@ -158,12 +146,8 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.temp}</Text>
                                 </View>
                             </View>
-                        </Neomorph>
-                        <Neomorph
-                            darkShadowColor="#afe4" // <- set this
-                            lightShadowColor="#044e61" // <- this
-                            style={styles.cardNeomorph}
-                        >
+                        </View>
+                        <View style={styles.cardBtn}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Heartrate size={30} /> */}
                                 <Image style={{ height: 75, width: 80 }}
@@ -174,7 +158,7 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.heartRate}</Text>
                                 </View>
                             </View>
-                        </Neomorph>
+                        </View>
 
                     </View>
                 </View>
@@ -196,7 +180,7 @@ const styles = StyleSheet.create({
         width: 0.85 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
@@ -207,11 +191,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     cardBtn: {
-        width: 0.3 * windowWidth,
-        height: 0.3 * windowWidth,
+        width: 0.34 * windowWidth,
+        height: 0.34 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
@@ -237,7 +221,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         padding: 15,
         marginHorizontal: 10,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         width: 0.376 * windowWidth,
         height: 0.38 * windowWidth,
         justifyContent: 'center'
@@ -249,7 +233,7 @@ const styles = StyleSheet.create({
         shadowRadius: 15,
         borderRadius: 30,
         padding: 15,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         width: 0.91 * windowWidth,
         height: 500,
 

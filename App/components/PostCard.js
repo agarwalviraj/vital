@@ -14,14 +14,16 @@ const PostCard = ({ item, onPress }) => {
         <View style={styles.card}>
 
             <Neomorph
-                darkShadowColor="#afe4" // <- set this
-                lightShadowColor="#044e61" // <- this
+                darkShadowColor="#044e61" // <- set this
+                lightShadowColor="#afe4" // <- this
                 style={{
                     marginTop: 20,
-                    shadowOpacity: 0.35, // <- and this or yours opacity
-                    shadowRadius: 15,
-                    borderRadius: 30,
-                    backgroundColor: '#83BCCA',
+                    shadowOpacity: 0.48, // <- and this or yours opacity
+                    shadowRadius: 5,
+                    borderRadius: 5,
+                    shadowOffset:{height:5,
+                    width:5,},
+                    backgroundColor: '#CDE8ED',
                     width: 0.89 * windowWidth,
                     height: 200,
                     padding: 15
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         width: 0.97 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,

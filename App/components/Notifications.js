@@ -5,7 +5,7 @@ import PushNotification, { Importance } from "react-native-push-notification";
 
 export function sendMessage(id, notifName, notifDesc) {
 
-    console.log("hi", id);
+    // console.log("hi", id);
     try {
         PushNotification.localNotification({
             /* Android Only Properties */

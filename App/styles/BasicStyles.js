@@ -6,7 +6,7 @@ display: flex;
     height: 2;
     width: 500px;
     justify-content: center;
-    background-color: #83BCCA;
+    background-color: #CDE8ED;
     border-style: solid;
     align-content: center;
     margin-top: 150px;

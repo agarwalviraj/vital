@@ -5,12 +5,13 @@ import Blood from '../assets/svg/blood.svg';
 import Boilingpoint from '../assets/svg/boilingpoint.svg';
 import Temp from '../assets/svg/temp.svg';
 import Heartrate from '../assets/svg/heartrate.svg';
+import { Globalstyles } from '../styles/globalStyles';
 
 
 const PatientProfileScreen = ({ route, navigation }) => {
     return (
         <ScrollView>
-            <View style={styles.container}>
+            <View style={Globalstyles.container}>
                 <View style={{ height: 120, width: 120, borderRadius: 60, marginTop: 45 }}>
                     <Image style={{ width: 120, height: 120, borderRadius: 60 }}
                         source={route.params.data.imageUrl}
@@ -36,8 +37,8 @@ const PatientProfileScreen = ({ route, navigation }) => {
 
                     </View>
                 </View>
-                <View style={{ flexDirection: 'column' }}>
-                    <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'column', alignItems:'center',justifyContent:'center',marginLeft:20 }}>
+                    <View style={{ flexDirection: 'row',alignItems:'center' }}>
                         <TouchableOpacity onPress={() => navigation.navigate('BpScreen')}>
                             <View style={styles.cardBtn}>
                                 <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
@@ -61,7 +62,7 @@ const PatientProfileScreen = ({ route, navigation }) => {
                         </View>
 
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 35 }}>
+                    <View style={{ flexDirection: 'row', marginBottom: 35, alignItems:'center' }}>
                         <View style={styles.cardBtn}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
@@ -92,17 +93,12 @@ const PatientProfileScreen = ({ route, navigation }) => {
 export default PatientProfileScreen
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#83BCCA',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+
     card: {
         width: 0.97 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
@@ -114,7 +110,7 @@ const styles = StyleSheet.create({
         height: 0.4 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,

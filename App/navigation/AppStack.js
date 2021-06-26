@@ -37,29 +37,29 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA' }}>
+                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED' }}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
                             elevation={8}
-                            backgroundColor="#83BCCA"
+                            backgroundColor="#CDE8ED"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
                     </View>
                 ),
                 headerLeft: () => (
-                    <View style={{ marginLeft: 10, backgroundColor: '#83BCCA' }}>
+                    <View style={{ marginLeft: 10, backgroundColor: '#CDE8ED' }}>
                         <MaterialCommunityIcons.Button
                             name="menu"
                             size={35}
                             elevation={8}
-                            backgroundColor="#83BCCA"
+                            backgroundColor="#CDE8ED"
                             color="#F87677"
                             onPress={() => navigation.toggleDrawer()}
                         />
@@ -77,17 +77,16 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA', elevation: 8 }}>
+                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED'}}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
-                            elevation={8}
-                            backgroundColor="#83BCCA"
+                            backgroundColor="#CDE8ED"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
@@ -104,9 +103,10 @@ const HomeStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     shadowColor: '#fff',
-                    elevation: 10,
+                    elevation:10
+                    
                 },
 
             }} />
@@ -114,13 +114,13 @@ const HomeStack = ({ navigation }) => (
     </Stack.Navigator>
 );
 
-const HistoryStack = ({ navigation }) => (
-    <Stack.Navigator>
-        <Stack.Screen name='History' component={HistoryScreen} />
-        <Stack.Screen name='PatientProfile1' component={PatientProfileScreen} />
-        <Stack.Screen name='Alert1' component={AlertScreen} />
-    </Stack.Navigator>
-);
+// const HistoryStack = ({ navigation }) => (
+//     <Stack.Navigator>
+//         <Stack.Screen name='History' component={HistoryScreen} />
+//         <Stack.Screen name='PatientProfile1' component={PatientProfileScreen} />
+//         <Stack.Screen name='Alert1' component={AlertScreen} />
+//     </Stack.Navigator>
+// );
 
 const ProfileStack = ({ navigation }) => (
     <Stack.Navigator>
@@ -133,29 +133,29 @@ const ProfileStack = ({ navigation }) => (
                     fontSize: 18,
                 },
                 headerStyle: {
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     shadowColor: '#fff',
                     elevation: 10,
                 },
                 headerRight: () => (
-                    <View style={{ marginRight: 10, backgroundColor: '#83BCCA' }}>
+                    <View style={{ marginRight: 10, backgroundColor: '#CDE8ED' }}>
                         <MaterialCommunityIcons.Button
                             name="alert"
                             size={35}
                             elevation={8}
-                            backgroundColor="#83BCCA"
+                            backgroundColor="#CDE8ED"
                             color="#F87677"
                             onPress={() => navigation.navigate('Alert')}
                         />
                     </View>
                 ),
                 headerLeft: () => (
-                    <View style={{ marginLeft: 10, backgroundColor: '#83BCCA' }}>
+                    <View style={{ marginLeft: 10, backgroundColor: '#CDE8ED' }}>
                         <MaterialCommunityIcons.Button
                             name="menu"
                             size={35}
                             elevation={8}
-                            backgroundColor="#83BCCA"
+                            backgroundColor="#CDE8ED"
                             color="#F87677"
                             onPress={() => navigation.toggleDrawer()}
                         />
@@ -167,56 +167,57 @@ const ProfileStack = ({ navigation }) => (
     </Stack.Navigator>
 );
 
-const HomeTabNavigator = ({ navigation }) => (
-    <Tab.Navigator
-        initialRouteName="Home"
+// const HomeTabNavigator = ({ navigation }) => (
+//     <Tab.Navigator
+//         initialRouteName="Home"
 
-        activeColor="#f0edf6"
-        inactiveColor="#589EE1"
-        barStyle={{ paddingBottom: 0, backgroundColor: '#498AA3' }}
-    >
-        <Tab.Screen name='Home' component={HomeStack} options={({ route }) => ({
-            tabBarLabel: 'Home',
-            // tabBarVisible: route.state && route.state.index === 0,
-            tabBarIcon: () => (
-                <MaterialCommunityIcons
-                    name="home-outline"
-                    color='black'
-                    size={25}
-                />
-            ),
-        })} />
-        <Tab.Screen name='History' component={HistoryStack} options={({ route }) => ({
-            tabBarLabel: 'History',
-            // tabBarVisible: route.state && route.state.index === 0,
-            tabBarIcon: () => (
-                <MaterialCommunityIcons
-                    name="history"
-                    color='black'
-                    size={25}
-                />
-            ),
-        })} />
+//         activeColor="#f0edf6"
+//         inactiveColor="#589EE1"
+//         barStyle={{ paddingBottom: 0, backgroundColor: '#498AA3' }}
+//     >
+//         <Tab.Screen name='Home' component={HomeStack} options={({ route }) => ({
+//             tabBarLabel: 'Home',
+//             // tabBarVisible: route.state && route.state.index === 0,
+//             tabBarIcon: () => (
+//                 <MaterialCommunityIcons
+//                     name="home-outline"
+//                     color='black'
+//                     size={25}
+//                 />
+//             ),
+//         })} />
+//         <Tab.Screen name='History' component={HistoryStack} options={({ route }) => ({
+//             tabBarLabel: 'History',
+//             // tabBarVisible: route.state && route.state.index === 0,
+//             tabBarIcon: () => (
+//                 <MaterialCommunityIcons
+//                     name="history"
+//                     color='black'
+//                     size={25}
+//                 />
+//             ),
+//         })} />
 
-        <Tab.Screen name='Profile' component={ProfileStack} options={({ route }) => ({
-            tabBarLabel: 'Profile',
-            // tabBarVisible: route.state && route.state.index === 0,
-            tabBarIcon: () => (
-                <FontAwesome5
-                    name="user"
-                    color='black'
-                    size={25}
-                />
-            ),
-        })} />
-    </Tab.Navigator>
+//         <Tab.Screen name='Profile' component={ProfileStack} options={({ route }) => ({
+//             tabBarLabel: 'Profile',
+//             // tabBarVisible: route.state && route.state.index === 0,
+//             tabBarIcon: () => (
+//                 <FontAwesome5
+//                     name="user"
+//                     color='black'
+//                     size={25}
+//                 />
+//             ),
+//         })} />
+//     </Tab.Navigator>
 
-)
+// )
 
 const AppStack = ({ navigation }) => {
     return (
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-            <Drawer.Screen name="HomeDrawer" component={HomeTabNavigator} />
+            <Drawer.Screen name="Home" component={HomeStack} />
+            <Drawer.Screen name="Profile" component={ProfileStack} />
             <Drawer.Screen name="About" component={AboutScreen} />
         </Drawer.Navigator>
     );

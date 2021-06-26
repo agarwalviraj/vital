@@ -10,6 +10,7 @@ import {
 } from "react-native-chart-kit";
 import { windowWidth } from '../utils/Dimensions';
 import socketIO from 'socket.io-client/dist/socket.io';
+import { Globalstyles } from '../styles/globalStyles';
 const SERVER = "ws://hackvital.herokuapp.com";
 const socketName = 'TimBloodPressure';
 
@@ -36,7 +37,7 @@ const BPScreen = () => {
 
     return (
 
-        <View style={styles.container}>
+        <View style={Globalstyles.container}>
 
             {value1.length == 6 ? setValue1(value1.slice(1)) : null}
             {time1.length == 6 ? setTime1(time1.slice(1)) : null}
@@ -87,10 +88,5 @@ const BPScreen = () => {
 export default BPScreen
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#83BCCA',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+
 })

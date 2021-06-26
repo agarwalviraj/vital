@@ -2,13 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { windowWidth } from '../utils/Dimensions';
 import { Neomorph } from 'react-native-neomorph-shadows';
+import { Globalstyles } from '../styles/globalStyles';
 
 
 
 const DoctorProfileScreen = () => {
     return (
 
-        <View style={styles.container}>
+        <View style={Globalstyles.container}>
 
             <Image style={{ height: 150, width: 150, borderRadius: 75 }}
                 source={require('../assets/users/doc_image.jpg')}
@@ -26,7 +27,7 @@ const DoctorProfileScreen = () => {
                     shadowRadius: 15,
                     borderRadius: 30,
                     padding: 25,
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     width: 0.65 * windowWidth,
                     height: 235,
                 }}
@@ -39,7 +40,7 @@ const DoctorProfileScreen = () => {
                     shadowOpacity: 0.35, // <- and this or yours opacity
                     shadowRadius: 15,
                     borderRadius: 30,
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     width: 0.65 * windowWidth,
                     height: 200,
                 }}
@@ -50,7 +51,7 @@ const DoctorProfileScreen = () => {
                 style={{
                     shadowRadius: 10,
                     borderRadius: 25,
-                    backgroundColor: '#83BCCA',
+                    backgroundColor: '#CDE8ED',
                     width: 0.6 * windowWidth,
                     height: 150,
                 }}
@@ -87,17 +88,11 @@ const DoctorProfileScreen = () => {
 export default DoctorProfileScreen
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#83BCCA',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     card: {
         width: 0.8 * windowWidth,
         borderRadius: 6,
         elevation: 6,
-        backgroundColor: '#83BCCA',
+        backgroundColor: '#CDE8ED',
         shadowOffset: { height: 0, width: 2 },
         shadowColor: 'black',
         shadowOpacity: 0.2,

@@ -6,6 +6,7 @@ import { SearchBar } from 'react-native-elements';
 import PostCard from '../components/PostCard';
 import AlertComponent from '../components/AlertComponent';
 import { alertpatients } from '../patients/AlertPatients';
+import { Globalstyles } from '../styles/globalStyles';
 
 const AlertScreen = () => {
 
@@ -92,7 +93,7 @@ const AlertScreen = () => {
 
     return (
 
-        <View style={styles.container}>
+        <View style={Globalstyles.container}>
             <FlatList
                 data={alertpatients}
 
@@ -121,10 +122,5 @@ const AlertScreen = () => {
 export default AlertScreen
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#83BCCA',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+
 })

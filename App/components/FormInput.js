@@ -2,12 +2,12 @@ import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 const FormInput = ({ labelValue, placeholderText, iconType, ...rest }) => {
     return (
         <View style={styles.inputContainer}>
             <View style={styles.iconStyle}>
-                <AntDesign name={iconType} size={25} color="#28527a" />
+                <FontAwesome5Icon name={iconType} size={25} color="#28527a" />
             </View>
             <TextInput
                 value={labelValue}

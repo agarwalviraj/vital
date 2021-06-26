@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { Globalstyles } from '../styles/globalStyles'
 
 const BloodScreen = () => {
     return (
-        <View>
+        <View style={Globalstyles.container}>
             <Text>BloodScreen</Text>
         </View>
     )

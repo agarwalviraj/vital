@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, DevSettings } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage'
 import {
     useTheme,
     Avatar,
@@ -22,6 +23,10 @@ import VitalLogo from '../assets/svg/VitalLogo.svg';
 export function DrawerContent(props) {
     const paperTheme = useTheme();
 
+    const signOut = () => {
+        AsyncStorage.setItem("token", '')
+            DevSettings.reload();
+    }
     return (
         <View style={{ backgroundColor: '#fff', flex: 1 }}>
 

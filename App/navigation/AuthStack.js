@@ -46,7 +46,20 @@ const AuthStack = () => {
             <Stack.Screen
                 name='Login'
                 component={LoginScreen}
-                options={{ header: () => null }}
+                options={{
+                    headerTitleAlign: 'center',
+                    headerBackAccessibilityLabel: 'null',
+                    headerTitleStyle: {
+
+
+                        fontSize: 18,
+                    },
+                    headerStyle: {
+                        backgroundColor: '#CDE8ED',
+                        shadowColor: '#fff',
+                        elevation: 19,
+                    },
+                }}
             />
             <Stack.Screen name='Signup'
                 component={SignupScreen} />
