@@ -13,7 +13,7 @@ import { alertpatients } from '../patients/AlertPatients';
 import { Neomorph } from 'react-native-neomorph-shadows';
 
 
-const AlertComponent = ({ item, onPress }) => {
+const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) => {
 
     const [channelId, setChannelId] = useState("");
     React.useEffect(() => {
@@ -76,10 +76,12 @@ const AlertComponent = ({ item, onPress }) => {
 
 
     return (
+        
         <View style={{ alignItems: 'center' }}>
             <View style={{ height: 50, width: windowWidth }}>
 
             </View>
+            <TouchableOpacity onPress={onPress}>
             <Neomorph
                 darkShadowColor="#afe4" // <- set this
                 lightShadowColor="#044e61" // <- this
@@ -104,9 +106,11 @@ const AlertComponent = ({ item, onPress }) => {
                     </View>
 
                 </View>
-                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center',marginLeft:35 }}>
+                    <View style={{ flexDirection: 'row', alignItems:'center', }}>
                         <View style={styles.cardBtn}>
+                        <TouchableOpacity onPress={onPress1}>
+
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Boilingpoint size={30} /> */}
@@ -118,8 +122,11 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.bloodPress}</Text>
                                 </View>
                             </View>
+                            </TouchableOpacity>
                         </View>
+                   
                         <View style={styles.cardBtn}>
+                        <TouchableOpacity onPress={ onPress2}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Blood size={30} /> */}
                                 <Image style={{ height: 75, width: 85 }}
@@ -130,11 +137,15 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.bloodO2}</Text>
                                 </View>
                             </View>
-                        </View>
+                            </TouchableOpacity>
 
+                        </View>
+                    
                     </View>
                     <View style={{ flexDirection: 'row', marginBottom: 35, }}>
+                    
                         <View style={styles.cardBtn}>
+                        <TouchableOpacity onPress={onPress3}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 {/* <Temp size={30} /> */}
@@ -146,8 +157,12 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.temp}</Text>
                                 </View>
                             </View>
+                            </TouchableOpacity>
                         </View>
+                    
+                    
                         <View style={styles.cardBtn}>
+                        <TouchableOpacity onPress={onPress4}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 {/* <Heartrate size={30} /> */}
                                 <Image style={{ height: 75, width: 80 }}
@@ -158,18 +173,23 @@ const AlertComponent = ({ item, onPress }) => {
                                     <Text style={styles.subText}>{item.heartRate}</Text>
                                 </View>
                             </View>
+                            </TouchableOpacity>
                         </View>
+                   
 
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
+                
+            </Neomorph>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
                     <Text>send message</Text>
                 </TouchableOpacity>
-            </Neomorph>
             <View style={{ height: 50, width: windowWidth }}>
 
             </View>
         </View>
+        
     )
 }
 
@@ -232,7 +252,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.35, // <- and this or yours opacity
         shadowRadius: 15,
         borderRadius: 30,
-        padding: 15,
+        padding: 25,
         backgroundColor: '#CDE8ED',
         width: 0.91 * windowWidth,
         height: 500,

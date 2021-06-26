@@ -1,18 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings, Platform } from 'react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
 import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialButton';
 import Axios from 'axios'
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage'
-import { Globalstyles } from '../styles/globalStyles'
+import { Globalstyles } from '../styles/globalStyles';
+import {alertpatients1} from '../patients/AlertPatients1';
+import messaging from '@react-native-firebase/messaging';
+
+// I am using Device info
+import firebase from '../utils/firebase';
+
 
 const LoginScreen = ({ navigation }) => {
+    const [state, setState] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    useEffect(() => {
+        AsyncStorage.getItem('token').then(value => {
+            setState(value);
+            //console.log('token',value);
+        });
+        if(state!=null){
+            navigation.replace('Home');
+        }
+        
+       
 
+        messaging()
+        .getToken()
+        .then(token => {
+          console.log('fcmtoken',token);
+        });
+  
+      // If using other push notification providers (ie Amazon SNS, etc)
+      // you may need to get the APNs token instead for iOS:
+      // if(Platform.OS == 'ios') { messaging().getAPNSToken().then(token => { return saveTokenToDatabase(token); }); }
+  
+      // Listen to whether the token changes
+      
+    },[])
+
+    
 
     const login = async (email, password) => {
         const data = {
@@ -27,9 +59,13 @@ const LoginScreen = ({ navigation }) => {
                 'https://hackvital.herokuapp.com/user/login',
                 data
             );
-            console.log(response)
+            //console.log(response)
             AsyncStorage.setItem("token", response.data.token)
-            DevSettings.reload();
+            AsyncStorage.setItem("email",email);
+            console.log(email);
+            
+            navigation.replace('Home');
+            // DevSettings.reload();
 
 
 

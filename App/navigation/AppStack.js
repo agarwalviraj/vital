@@ -19,7 +19,10 @@ import TemperatureScreen from '../screens/TemperatureScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import EditDrProfileScreen from '../screens/EditDrProfileScreen';
 import AboutScreen from '../screens/AboutScreen';
-import { DrawerContent } from '../components/DrawerContent'
+import { DrawerContent } from '../components/DrawerContent';
+import LoginScreen from '../screens/LoginScreen';
+import AsyncStorage from '@react-native-community/async-storage'
+import SignupScreen from '../screens/SignupScreen';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -27,6 +30,7 @@ const Drawer = createDrawerNavigator();
 
 
 const HomeStack = ({ navigation }) => (
+    
     <Stack.Navigator>
         <Stack.Screen name='Home' component={HomeScreen}
             options={{
@@ -110,7 +114,68 @@ const HomeStack = ({ navigation }) => (
                 },
 
             }} />
-        <Stack.Screen name='BpScreen' component={BPScreen} />
+        <Stack.Screen name='BpScreen' component={BPScreen}
+        options={{
+            headerTitle: 'Blood Pressure Report',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+
+
+                    fontSize: 18,
+                },
+                headerStyle: {
+                    backgroundColor: '#CDE8ED',
+                    shadowColor: '#fff',
+                    elevation: 10,
+                },
+        }} />
+        <Stack.Screen name='BloodScreen' component={BloodScreen}
+        options={{
+            headerTitle: 'Blood Oxyzen Report',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+
+
+                    fontSize: 18,
+                },
+                headerStyle: {
+                    backgroundColor: '#CDE8ED',
+                    shadowColor: '#fff',
+                    elevation: 10,
+                },
+        }}  />
+        <Stack.Screen name='TemperatureScreen' component={TemperatureScreen}
+        options={{
+            headerTitle: 'Temperature Report',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+
+
+                    fontSize: 18,
+                },
+                headerStyle: {
+                    backgroundColor: '#CDE8ED',
+                    shadowColor: '#fff',
+                    elevation: 10,
+                },
+        }}  />
+
+<Stack.Screen name='HeartrateScreen' component={HeartrateScreen}
+        options={{
+            headerTitle: 'Heartrate Report',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+
+
+                    fontSize: 18,
+                },
+                headerStyle: {
+                    backgroundColor: '#CDE8ED',
+                    shadowColor: '#fff',
+                    elevation: 10,
+                },
+        }}  />
+
     </Stack.Navigator>
 );
 

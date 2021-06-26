@@ -7,8 +7,10 @@ import PostCard from '../components/PostCard';
 import AlertComponent from '../components/AlertComponent';
 import { alertpatients } from '../patients/AlertPatients';
 import { Globalstyles } from '../styles/globalStyles';
+import {alertpatients1} from '../patients/AlertPatients1';
 
-const AlertScreen = () => {
+
+const AlertScreen = ({navigation}) => {
 
     // const alertpatients = [
     //     {
@@ -103,6 +105,11 @@ const AlertScreen = () => {
                     <AlertComponent
                         item={item}
                         onPress={() => navigation.navigate('PatientProfile', { data: item })}
+                        onPress1={() => navigation.navigate('BpScreen',{name:item.name})}
+                        onPress2={() => navigation.navigate('BloodScreen',{name:item.name})}
+                        onPress3={() => navigation.navigate('TemperatureScreen',{name:item.name})}
+                        onPress4={() => navigation.navigate('HeartrateScreen',{name:item.name})}
+
                     />
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button, FlatList, ListHeader, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, ListHeader, TouchableOpacity, ScrollView, TextInput, ItemSeparatorComponent } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
 import { SearchBar } from 'react-native-elements';
@@ -8,6 +8,7 @@ import { currentPatients } from '../patients/CurrentPatients';
 import Axios from 'axios'
 import axios from 'axios';
 import { Globalstyles } from '../styles/globalStyles';
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 const HomeScreen = ({ navigation }) => {
@@ -17,21 +18,29 @@ const HomeScreen = ({ navigation }) => {
 
     const arrayfilter = (letters) => {
         if(letters== ''){
-            return currentPatients;
+            return state;
         }
         else{
-            return currentPatients.filter(item1 => item1.name.indexOf(letters) > -1);
+            return state.filter(item1 => item1.name.indexOf(letters) > -1);
 
         }
 
     }
 
     useEffect(() => {
-        Axios.get('https://hackvital.herokuapp.com/patient/?DrMail=jhondoe@gmail.com')
-            .then(res => {
-                setState(res.data);
-            })
+        const getEmail=(async()=>{
+
+        // const token =await AsyncStorage.getItem("token")
+        // const jwtOBJ = {jwt:token}
+        // const res= await Axios.get(`https://hackvital.herokuapp.com/authorize`,jwtOBJ)
+        // console.log(res);
+        const email =await AsyncStorage.getItem("email");
+        const patients = await Axios.get(`https://hackvital.herokuapp.com/patient/?DrMail=${email}`);
+            setState(patients.data);
             setFilteredArray(currentPatients);
+        })
+        getEmail()
+       
     }, [])
 
 
@@ -50,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
 
                 onChangeText={(searchText) => {
                     setSearchText(searchText)
-                    console.log(arrayfilter(searchText));
+                    //console.log(arrayfilter(searchText));
                     setFilteredArray(arrayfilter(searchText));
                 }}
                 value={searchText}
@@ -72,8 +81,8 @@ const HomeScreen = ({ navigation }) => {
 
             <Text style={{ fontFamily: 'Poppins-Normal', fontSize: 26, color: '#28527A', paddingTop: 16 }}>Current Patients</Text>
 
-            <FlatList
-                data={filteredArray}
+            <FlatList style={{ItemSeparatorComponent:null}}
+                data={state}
 
                 renderItem={({ item }) => (
 
@@ -86,10 +95,11 @@ const HomeScreen = ({ navigation }) => {
 
 
                 )}
-                keyExtractor={(item) => item.id}
-                ListHeaderComponent={ListHeader}
-                ListFooterComponent={ListHeader}
-                showsVerticalScrollIndicator={false}
+                keyExtractor={(item) => item._id}
+                //ListHeaderComponent={ListHeader}
+                //ListFooterComponent={ListHeader}
+                //ItemSeparatorComponent={null}
+                //showsVerticalScrollIndicator={false}
             />
 
 
