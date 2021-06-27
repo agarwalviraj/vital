@@ -3,7 +3,7 @@ const heartRate = (socket: Socket, upRange: number, lowRange: number) => {
   setInterval(() => {
     const vital = Math.random() * (upRange - lowRange) + lowRange;
     socket.emit("heartRate", {
-      name: new Date().toLocaleTimeString("en-IN"),
+      time: new Date().toLocaleString("en-IN"),
       value: vital,
     });
   }, 3000);

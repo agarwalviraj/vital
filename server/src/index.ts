@@ -27,6 +27,7 @@ io.on("connection", (socket) => {
   heartRate(socket, 120, 50);
 });
 
+// app.use("/authorize", authorize);
 app.use("/", api);
 
 server.listen(process.env.PORT, () => {

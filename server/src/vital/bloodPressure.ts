@@ -13,7 +13,7 @@ let data: { time: String; value: number };
 
 const updateData = (vital: number) => {
   data = {
-    time: new Date().toLocaleTimeString("en-IN"),
+    time: new Date().toLocaleString("en-IN"),
     value: vital,
   };
 };
