@@ -76,35 +76,35 @@ const PostCard = ({ item, onPress }) => {
                         <View style={styles.patientInfoWrapper}>
                             <View style={{ width: 80, height: 80, borderRadius: 40, marginRight: 10, flex: 1 }}>
                                 <Image style={{ width: 80, height: 80, borderRadius: 40 }}
-                                    source={item.imageUrl}
+                                    source={{uri:`https://hackvital.herokuapp.com/${item.name}.jpg`}}
                                 />
                             </View>
-                            <View style={{ flexDirection: 'column', flex: 4, marginLeft: 10 }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{item.name}</Text>
-                                <Text style={{ fontSize: 12 }}>Age: {item.age}</Text>
-                                <Text style={{ fontSize: 12 }}>Sex: {item.sex}</Text>
-                                <Text style={{ fontSize: 12 }}>Hospital: {item.hospitalName}</Text>
+                            <View style={{ flexDirection: 'column', flex: 4, marginLeft: 30 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 19,color:'#28527A',fontFamily:'Poppins-SemiBold' }}>{item.name}</Text>
+                                <Text style={styles.text}>Age: {item.age}</Text>
+                                <Text style={styles.text}>Sex: {item.sex}</Text>
+                                <Text style={styles.text}>Hospital: {item.hospitalName}</Text>
 
 
 
                             </View>
                         </View>
-                        <View style={{ flexDirection: 'row', margin: 10, marginLeft:20 }}>
+                        <View style={{ flexDirection: 'row', margin: 10, marginLeft:10 }}>
                             <View style={{ flexDirection: 'column', marginTop: 10,alignItems:'center', }}>
-                                <Text style={{ fontSize: 14, fontWeight: '600' }}>BP:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.BloodPressure}</Text>
+                                <Text style={styles.text}>BP:</Text>
+                                <Text style={styles.subText}>{data.BloodPressure}</Text>
                             </View>
                             <View style={{ flexDirection: 'column', margin: 10, marginLeft:20 }}>
-                                <Text style={{ fontSize: 14, fontWeight: '600' }}>Blood O2:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.BloodO2}</Text>
+                                <Text style={styles.text}>Blood O2:</Text>
+                                <Text style={styles.subText}>{data.BloodO2}</Text>
                             </View>
                             <View style={{ flexDirection: 'column', margin: 10 }}>
-                                <Text style={{ fontSize: 14, fontWeight: '600' }}>Temperature:</Text>
-                                <Text style={{ fontSize: 12 }}>{data.Temperature}</Text>
+                                <Text style={styles.text}>Temperature:</Text>
+                                <Text style={styles.subText}>{data.Temperature}</Text>
                             </View>
                             <View style={{ flexDirection: 'column', margin: 10 }}>
-                                <Text style={{ fontSize: 14, fontWeight: '600' }}>Heart rate: </Text>
-                                <Text style={{ fontSize: 12 }}>{data.HeartRate}</Text>
+                                <Text style={styles.text}>Heart rate: </Text>
+                                <Text style={styles.subText}>{data.HeartRate}</Text>
                             </View>
                         </View>
                     </View>
@@ -131,5 +131,19 @@ const styles = StyleSheet.create({
     },
     patientInfoWrapper: {
         flexDirection: 'row'
+    },
+    text:{
+      fontSize: 14, 
+      fontWeight: '600',
+      color:'#28527A',
+      fontFamily:'Poppins-SemiBold',
+      fontWeight:'600',
+    },
+    subText:{
+      fontSize: 12, 
+      fontWeight: '600',
+      color:'#28527A',
+      fontFamily:'Poppins-Normal',
+      fontWeight:'600',
     }
 })

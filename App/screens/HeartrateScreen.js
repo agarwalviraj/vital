@@ -61,13 +61,13 @@ const updateData = useCallback(
                             }
                         ]
                     }}
-                    width={windowWidth}
+                    width={0.8*windowWidth}
                     height={220}
                     yAxisInterval={1} // optional, defaults to 1
                     chartConfig={{
                         backgroundColor: "#e26a00",
-                        backgroundGradientFrom: "#fb8c00",
-                        backgroundGradientTo: "#ffa726",
+                        backgroundGradientFrom: "#5288BC",
+                        backgroundGradientTo: "#5288BC",
                         decimalPlaces: 0, // optional, defaults to 2dp
                         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

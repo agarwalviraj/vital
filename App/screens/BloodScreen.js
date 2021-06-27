@@ -93,51 +93,7 @@ const BloodScreen = ({route}) => {
                 />
                 
             }
-            {value1.length == 0 || time1.length == 0 ? null :
-
-<LineChart
-style={{width:0.7*windowWidth}}
-    data={{
-        labels: time1,
-        datasets: [
-            {
-                data: value1
-            }
-        ]
-    }}
-    width={0.8*windowWidth}
-    height={200}
-    
-    yAxisInterval={1} // optional, defaults to 1
-    chartConfig={{
-        
-        
-        backgroundGradientFrom: "#5288BC",
-        
-        backgroundGradientTo: "#5288BC",
-        decimalPlaces: 0, // optional, defaults to 2dp
-        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-        style: {
-            borderRadius: 16
-        },
-        propsForDots: {
-            r: "2",
-            strokeWidth: "0.5",
-            stroke: "#EDEDED"
-        }
-    }}
-    bezier
-    style={{
-        marginVertical: 8,
-        borderRadius: 16,
-       
-        
-        
-    }}
-/>
-
-}
+            
         </View>
     )
 }

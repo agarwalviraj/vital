@@ -11,6 +11,7 @@ import { Globalstyles } from '../styles/globalStyles';
 import AsyncStorage from '@react-native-community/async-storage'
 
 
+
 const HomeScreen = ({ navigation }) => {
     const [searchText, setSearchText] = useState('');
     const [state, setState] = useState();
@@ -40,6 +41,7 @@ const HomeScreen = ({ navigation }) => {
             setFilteredArray(currentPatients);
         })
         getEmail()
+        console.log(state);
        
     }, [])
 
@@ -53,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
                     autoPlay
                 /> */}
             </View>
-            <TextInput style={{ width: windowWidth * 0.8, borderRadius: 15, marginTop: 30, padding: 8, elevation: 6, height: 50, backgroundColor: '#fff', color: 'black' }}
+            {/* <TextInput style={{ width: windowWidth * 0.8, borderRadius: 15, marginTop: 30, padding: 8, elevation: 6, height: 50, backgroundColor: '#fff', color: 'black' }}
                 placeholder="Search here..."
                 placeholderTextColor='black'
 
@@ -63,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
                     setFilteredArray(arrayfilter(searchText));
                 }}
                 value={searchText}
-            />
+            /> */}
             {/* <SearchBar
                 placeholder="Search here..."
                 onChangeText={(searchText) => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Image, DevSettings } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage'
 import {
     useTheme,
@@ -18,22 +19,22 @@ import {
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
-import VitalLogo from '../assets/svg/VitalLogo.svg';
+import VitalLogo from '../assets/svg/vital_1.svg';
 
-export function DrawerContent(props) {
+//const navigationn = useNavigation();
+
+export function DrawerContent(props,navigation) {
     const paperTheme = useTheme();
 
-    const signOut = () => {
-        AsyncStorage.setItem("token", '')
-            DevSettings.reload();
-    }
+   
     return (
         <View style={{ backgroundColor: '#fff', flex: 1 }}>
 
             <DrawerContentScrollView {...props}>
                 <View style={{ alignItems: 'center', marginTop: 45 }}>
                     <Image
-                        source={require('../assets/svg/vitalsvg.jpeg')}
+                    width={30}
+                        source={require('../assets/images/vital_11.jpeg')}
                     />
                 </View>
 
@@ -103,7 +104,17 @@ export function DrawerContent(props) {
                         />
                     )}
                     label="Sign Out"
-                    onPress={() => { signOut() }}
+                    onPress={() => { //AsyncStorage.setItem("token", '')
+                   // onPressLog;
+                   
+                   // props.navigation.pop('Login');
+                        // props.navigation.reset({
+                        //     index:0,
+                        //     routes:[{name:'Login'}],
+                        // });
+                        props.navigation.reset({ routes: [{ name: 'Login' }] });
+                    //this.props.navigation.replace('About') 
+                }}
                 />
             </Drawer.Section>
         </View >

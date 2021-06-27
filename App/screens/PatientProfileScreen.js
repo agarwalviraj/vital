@@ -76,8 +76,8 @@ function bptext(data){
             <View style={Globalstyles.container}>
                 <View style={{ height: 120, width: 120, borderRadius: 60, marginTop: 45 }}>
                     <Image style={{ width: 120, height: 120, borderRadius: 60 }}
-                        source={route.params.data.imageUrl}
-                    />
+                                    source={{uri:`https://hackvital.herokuapp.com/${route.params.data.name}.jpg`}}
+                                    />
                 </View>
                 <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 35 }}>{route.params.data.name}</Text>
 
@@ -99,7 +99,7 @@ function bptext(data){
 
                     </View>
                 </View>
-                <View style={{ flexDirection: 'column', alignItems:'center',justifyContent:'center',marginLeft:20 }}>
+                <View style={{ flexDirection: 'column', alignItems:'center',justifyContent:'center',marginLeft:20,marginTop:50 }}>
                     <View style={{ flexDirection: 'row',alignItems:'center' }}>
                         <TouchableOpacity onPress={() => navigation.navigate('BpScreen',{name:name1})}>
                             {/* {data.BloodPressure>120 ?  <View style={styles.cardBtn}> :  <View style={styles.cardBtn}>} */}
@@ -109,7 +109,7 @@ function bptext(data){
                                 height: 0.35 * windowWidth,
                                 borderRadius: 6,
                                 elevation: 6,
-                                backgroundColor:data.BloodPressure>120 ? "red":"#CDE8ED",
+                                backgroundColor:data.BloodPressure>120 ? "#CDE8ED":"#CDE8ED",
                                 // backgroundColor: '#CDE8ED',
                                 shadowOffset: { height: 0, width: 2 },
                                 shadowColor: 'black',
@@ -132,7 +132,26 @@ function bptext(data){
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation.navigate('BloodScreen',{name:name1})}>
-                        <View style={styles.cardBtn}>
+                        <View style={{
+                            
+                               
+                                width: 0.35 * windowWidth,
+                                height: 0.35 * windowWidth,
+                                borderRadius: 6,
+                                elevation: 6,
+                                backgroundColor:!(data.BloodO2>95 && data.BloodO2<100) ? "#CDE8ED":"#CDE8ED",
+                                // backgroundColor: '#CDE8ED',
+                                shadowOffset: { height: 0, width: 2 },
+                                shadowColor: 'black',
+                                shadowOpacity: 0.2,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: 0,
+                                marginTop: 10,
+                                marginRight: 30,
+                              
+                           
+                        }}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 <Blood size={30} />
                                 <View style={{ flexDirection: 'row', marginTop: 15 }}>
@@ -144,9 +163,25 @@ function bptext(data){
                         </TouchableOpacity>
 
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 35, alignItems:'center' }}>
+                    <View style={{ flexDirection: 'row', marginBottom: 35, left:-22 }}>
                         <TouchableOpacity onPress={() => navigation.navigate('TemperatureScreen',{name:name1})}>
-                        <View style={styles.cardBtn}>
+                        <View style={{
+                            width: 0.35 * windowWidth,
+                            height: 0.35 * windowWidth,
+                            borderRadius: 6,
+                            elevation: 6,
+                            backgroundColor:!(data.Temperature>97 && data.Temperature<=100) ? "#CDE8ED":"#CDE8ED",
+                            // backgroundColor: '#CDE8ED',
+                            shadowOffset: { height: 0, width: 2 },
+                            shadowColor: 'black',
+                            shadowOpacity: 0.2,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            padding: 0,
+                            marginTop: 10,
+                            marginRight: 20,
+                            
+                        }}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
 
                                 <Temp size={30} />
@@ -158,7 +193,22 @@ function bptext(data){
                         </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation.navigate('HeartrateScreen',{name:name1})}>
-                        <View style={styles.cardBtn}>
+                        <View style={{
+                             width: 0.35 * windowWidth,
+                             height: 0.35 * windowWidth,
+                             borderRadius: 6,
+                             elevation: 6,
+                             backgroundColor:!(data.HeartRate>60 && data.HeartRate<=110) ? "red":"#CDE8ED",
+                             // backgroundColor: '#CDE8ED',
+                             shadowOffset: { height: 0, width: 2 },
+                             shadowColor: 'black',
+                             shadowOpacity: 0.2,
+                             justifyContent: 'center',
+                             alignItems: 'center',
+                             padding: 0,
+                             marginTop: 10,
+                            right:-12,
+                        }}>
                             <View style={{ flexDirection: 'column', padding: 15, alignItems: 'center' }}>
                                 <Heartrate size={30} />
                                 <View style={{ flexDirection: 'row', marginTop: 15 }}>

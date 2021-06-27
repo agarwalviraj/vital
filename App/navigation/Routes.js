@@ -6,7 +6,7 @@ import AppStack from "./AppStack";
 import Axios from 'axios'
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
-const Routes = () => {
+const Routes = ({navigation}) => {
     const [state, setState] = useState();
 
     useEffect(() => {
@@ -35,7 +35,10 @@ const Routes = () => {
         <NavigationContainer>
             {/* <AppStack /> */}
             {/* <AuthStack /> */}
-            {state ? <AppStack /> : <AuthStack />}
+            {state ? <AppStack 
+            onPresstog ={() => navigation.toggleDrawer()}
+            onPressalert = {() => navigation.navigate('Alert')}
+            /> : <AuthStack />}
         </NavigationContainer>
     );
 };

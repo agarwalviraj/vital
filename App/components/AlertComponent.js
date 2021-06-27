@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 import { TouchableOpacity, Modal, View, Image, StyleSheet, Text, Avatar } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -11,9 +11,54 @@ import { sendMessage } from '../components/Notifications';
 import PushNotification, { Importance } from "react-native-push-notification";
 import { alertpatients } from '../patients/AlertPatients';
 import { Neomorph } from 'react-native-neomorph-shadows';
+import { useSocket } from "../contexts/socketContext";
+import AsyncStorage from '@react-native-community/async-storage'
+
 
 
 const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) => {
+    const { _id, name, hospitalName, age, sex, desc, image, vitals } = item;
+    const socket = useSocket();
+    const [data, setData] = useState({
+      BloodPressure: 0,
+      BloodO2: 0,
+      Temperature: 0,
+      HeartRate: 0,
+    });
+   const updateData = useCallback(
+      (newData, vitalName) => {
+        const newObj = data;
+        newObj[vitalName] = newData.value;
+        setData((oldData) => ({ ...oldData, ...newObj }));
+      },
+      [setData]
+    );
+      useEffect(() => {
+      if (socket) {
+        if (vitals.includes("BloodPressure"))
+          socket.on(`${name}BloodPressure`, (newData) =>
+            updateData(newData, "BloodPressure")
+          );
+  
+        if (vitals.includes("BloodO2"))
+          socket.on(`${name}BloodO2`, (newData) =>
+            updateData(newData, "BloodO2")
+          );
+  
+        if (vitals.includes("Temperature"))
+          socket.on(`${name}Temperature`, (newData) =>
+            updateData(newData, "Temperature")
+          );
+  
+        if (vitals.includes("HeartRate"))
+          socket.on(`${name}HeartRate`, (newData) =>
+            updateData(newData, "HeartRate")
+          );
+  
+        // socket.on("TimBloodPressure", (newData) => updateData(newData));
+      }
+      return () => socket.off("TimBloodPressure");
+    }, [socket, updateData]);
 
     const [channelId, setChannelId] = useState("");
     React.useEffect(() => {
@@ -22,15 +67,19 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                 channelId: "channel-id", // (required)
                 channelName: "My channel", // (required)
                 channelDescription: "A channel to categorise your notifications", // (optional) default: undefined.
-                playSound: false, // (optional) default: true
-                soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
+                playSound: true, // (optional) default: true
+                soundName: "alert_notification", // (optional) See `soundName` parameter of `localNotification` function
                 importance: Importance.HIGH, // (optional) default: Importance.HIGH. Int value of the Android notification importance
                 vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
             },
             (created) => {
                 PushNotification.getChannels(function (channel_ids) {
+                    
 
                     setChannelId(channel_ids)// ['channel_id_1']
+                    console.log(channel_ids);
+                    //AsyncStorage.setItem("channel_id",channel_ids);
+
                 });
             } // (optional) callback returns whether the channel was created, false means it already existed.
         );
@@ -76,7 +125,6 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
 
 
     return (
-        
         <View style={{ alignItems: 'center' }}>
             <View style={{ height: 50, width: windowWidth }}>
 
@@ -91,18 +139,20 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                     <View style={styles.patientInfoWrapper}>
                         <View style={{ width: 80, height: 80, borderRadius: 40, marginRight: 10, flex: 1 }}>
                             <Image style={{ width: 80, height: 80, borderRadius: 40 }}
-                                source={item.imageUrl}
+                                source={{uri:`https://hackvital.herokuapp.com/${item.name}.jpg`}}
+                                
+                                
                             />
                         </View>
-                        <View style={{ flexDirection: 'column', flex: 4, marginLeft: 20 }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{item.name}</Text>
-                            <Text style={{ fontSize: 12 }}>Age: {item.age}</Text>
-                            <Text style={{ fontSize: 12 }}>Sex: {item.sex}</Text>
-                            <Text style={{ fontSize: 12 }}>Hospital: {item.hospitalName}</Text>
+                        <View style={{ flexDirection: 'column', flex: 4, marginLeft: 30 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 19,color:'#28527A',fontFamily:'Poppins-SemiBold' }}>{item.name}</Text>
+                                <Text style={styles.text}>Age: {item.age}</Text>
+                                <Text style={styles.text}>Sex: {item.sex}</Text>
+                                <Text style={styles.text}>Hospital: {item.hospitalName}</Text>
 
 
 
-                        </View>
+                            </View>
                     </View>
 
                 </View>
@@ -117,9 +167,11 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                 <Image style={{ height: 75, width: 80 }}
                                     source={require('../assets/images/bloodpressure.png')}
                                 />
-                                <View style={{ flexDirection: 'column', marginTop: 15 }}>
+                                <View style={{ flexDirection: 'column', marginTop: 15,alignItems:'center' }}>
                                     <Text style={styles.text}>BP: </Text>
-                                    <Text style={styles.subText}>{item.bloodPress}</Text>
+                                    <View style={{alignItems:'center'}}>
+                                    <Text style={styles.subText}>{data.BloodPressure}</Text>
+                                    </View>
                                 </View>
                             </View>
                             </TouchableOpacity>
@@ -134,7 +186,9 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                 />
                                 <View style={{ flexDirection: 'column', marginTop: 15 }}>
                                     <Text style={styles.text}>Blood O2: </Text>
-                                    <Text style={styles.subText}>{item.bloodO2}</Text>
+                                    <View style={{alignItems:'center'}}>
+                                    <Text style={styles.subText}>{data.BloodO2}</Text>
+                                    </View>
                                 </View>
                             </View>
                             </TouchableOpacity>
@@ -154,7 +208,9 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                 />
                                 <View style={{ flexDirection: 'column', marginTop: 15 }}>
                                     <Text style={styles.text}>Temperature: </Text>
-                                    <Text style={styles.subText}>{item.temp}</Text>
+                                    <View style={{alignItems:'center'}}>
+                                        <Text style={styles.subText}>{data.Temperature}</Text>
+                                    </View>
                                 </View>
                             </View>
                             </TouchableOpacity>
@@ -170,7 +226,9 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                                 />
                                 <View style={{ flexDirection: 'column', marginTop: 15 }}>
                                     <Text style={styles.text}>Heart Rate: </Text>
-                                    <Text style={styles.subText}>{item.heartRate}</Text>
+                                    <View style={{alignItems:'center'}}>
+                                    <Text style={styles.subText}>{data.HeartRate}</Text>
+                                    </View>
                                 </View>
                             </View>
                             </TouchableOpacity>
@@ -182,9 +240,9 @@ const AlertComponent = ({ item, onPress,onPress1,onPress2,onPress3,onPress4  }) 
                 
             </Neomorph>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
+            {/* <TouchableOpacity onPress={() => sendMessage(channelId, item.name, item.bloodPress)}>
                     <Text>send message</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             <View style={{ height: 50, width: windowWidth }}>
 
             </View>
@@ -225,15 +283,6 @@ const styles = StyleSheet.create({
         marginTop: 35,
         marginRight: 30,
     },
-    text: {
-        fontFamily: 'Poppins-SemiBold',
-        fontSize: 13,
-
-    },
-    subText: {
-        fontFamily: 'Poppins-Normal',
-        fontSize: 13,
-    },
     cardNeomorph: {
         marginTop: 20,
         shadowOpacity: 0.35, // <- and this or yours opacity
@@ -257,5 +306,19 @@ const styles = StyleSheet.create({
         width: 0.91 * windowWidth,
         height: 500,
 
-    }
+    },
+    text:{
+        fontSize: 14, 
+        fontWeight: '600',
+        color:'#28527A',
+        fontFamily:'Poppins-SemiBold',
+        fontWeight:'600',
+      },
+      subText:{
+        fontSize: 14, 
+        fontWeight: '600',
+        color:'#28527A',
+        fontFamily:'Poppins-Normal',
+        fontWeight:'600',
+      }
 })

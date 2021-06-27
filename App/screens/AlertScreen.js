@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { StyleSheet, Text, View, Button, FlatList, ListHeader, TouchableOpacity, ScrollView } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
@@ -6,11 +6,29 @@ import { SearchBar } from 'react-native-elements';
 import PostCard from '../components/PostCard';
 import AlertComponent from '../components/AlertComponent';
 import { alertpatients } from '../patients/AlertPatients';
-import { Globalstyles } from '../styles/globalStyles';
 import {alertpatients1} from '../patients/AlertPatients1';
+import Axios from 'axios'
+import axios from 'axios';
+import { Globalstyles } from '../styles/globalStyles';
+import AsyncStorage from '@react-native-community/async-storage'
 
 
 const AlertScreen = ({navigation}) => {
+
+    const [state, setState] = useState([]);
+    
+    
+    useEffect(() => {
+        const getEmail=(async()=>{
+
+            
+            const email =await AsyncStorage.getItem("email");
+            const patients = await Axios.get(`https://hackvital.herokuapp.com/patient/?DrMail=${email}`);
+                setState(patients.data);
+            })
+            getEmail();
+    },[]);
+    console.log("state",state);
 
     // const alertpatients = [
     //     {
@@ -97,7 +115,7 @@ const AlertScreen = ({navigation}) => {
 
         <View style={Globalstyles.container}>
             <FlatList
-                data={alertpatients}
+                data={state}
 
                 renderItem={({ item }) => (
 
@@ -115,7 +133,7 @@ const AlertScreen = ({navigation}) => {
 
 
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item._id}
                 ListHeaderComponent={ListHeader}
                 ListFooterComponent={ListHeader}
                 showsVerticalScrollIndicator={false}

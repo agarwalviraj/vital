@@ -7,9 +7,13 @@ import LoginScreen from '../screens/LoginScreen';
 import AsyncStorage from '@react-native-community/async-storage'
 import SignupScreen from '../screens/SignupScreen';
 import {View} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import SplashScreen from '../screens/SplashScreen';
 
 const Stack = createStackNavigator();
-const AuthStack = () => {
+const AuthStack = ({navigation, onPresstog, onPressalert}) => {
     const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
     let routeName;
 
@@ -38,7 +42,7 @@ const AuthStack = () => {
     else if (isFirstLaunch == true) {
         routeName = 'Onboarding';
     } else {
-        routeName = 'Login';
+        routeName = 'Splash';
     }
 
     return (
@@ -46,6 +50,11 @@ const AuthStack = () => {
             <Stack.Screen
                 name='Onboarding'
                 component={OnboardingScreen}
+                options={{ header: () => null }}
+            />
+             <Stack.Screen
+                name='Splash'
+                component={SplashScreen}
                 options={{ header: () => null }}
             />
             <Stack.Screen
@@ -89,7 +98,7 @@ const AuthStack = () => {
                             elevation={8}
                             backgroundColor="#CDE8ED"
                             color="#F87677"
-                            onPress={() => navigation.navigate('Alert')}
+                            onPress={onPressalert}
                         />
                     </View>
                 ),
@@ -101,7 +110,7 @@ const AuthStack = () => {
                             elevation={8}
                             backgroundColor="#CDE8ED"
                             color="#F87677"
-                            onPress={() => navigation.toggleDrawer()}
+                            onPress={onPresstog}
                         />
                     </View>
                 ),

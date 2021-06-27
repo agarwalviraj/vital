@@ -42,9 +42,9 @@ const updateData = useCallback(
             socket.on(`${route.params.name}BloodPressure`, (newData) => updateData(newData));
             console.log(`${route.params.name}BloodPressure`);
            // socket.on("TimBloodPressure", (newData) => updateData(newData));
-           console.log(time1);
     }
     
+    console.log(time1);
 
        
     }, [socket, updateData]);
@@ -62,53 +62,48 @@ const updateData = useCallback(
     return (
 
         <View style={Globalstyles.container}>
-           
-            {value1.length == 6 ? setValue1(value1.slice(1)) : null}
-            {time1.length == 6 ? setTime1(time1.slice(1)) : null}
 
-            {value1.length == 0 || time1.length == 0 ? null :
-                <View style ={{flex:1, flexDirection:'column'}}>
-              <View style={{flex:1,flexDirection:"row"}}>
-                  <YAxis
-            data={value1}
-            numberOfTicks={4}
-            contentInset={{ top: 10, bottom: 5 }}
-            svg={{
-                fill: '#141B5D70',
-                fontWeight: '600'
-            }}
-            style={{ height:200 }}
-             yAccessor={yAccessor}
-            max={120}
-            min={0}
-        />
-                   <AreaChart
-                    style={{ height: 200,width:windowWidth-40 }}
-                        data={value1}
-                        contentInset={{ top: 30, bottom: 30 }}
-                        curve={shape.curveNatural}
-                        svg={{ fill: 'rgba(134, 65, 244, 0.8)' }}
-                     
-                    >
-                       
-                <Grid />
-            </AreaChart>
-            </View>
-            <XAxis 
-            data={time1}
-            numberOfTicks={4}
-            contentInset={{ left: 10, right: 10 }}
-            svg={{
-                fill: '#141B5D70',
-                fontWeight: '600'
-            }}
-            style={{ height:200 }}
-            xAccessor={xAccessor}
-           
-        />
-        </View>
+        {value1.length == 6 ? setValue1(value1.slice(1)) : null}
+        {time1.length == 6 ? setTime1(time1.slice(1)) : null}
+
+        {value1.length == 0 || time1.length == 0 ? null :
+
+            <LineChart
+                data={{
+                    labels: time1,
+                    datasets: [
+                        {
+                            data: value1
+                        }
+                    ]
+                }}
+                width={0.8*windowWidth}
+                height={220}
+                yAxisInterval={1} // optional, defaults to 1
+                chartConfig={{
+                    backgroundColor: "#e26a00",
+                    backgroundGradientFrom: "#5288BC",
+                    backgroundGradientTo: "#5288BC",
+                    decimalPlaces: 0, // optional, defaults to 2dp
+                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    style: {
+                        borderRadius: 16
+                    },
+                    propsForDots: {
+                        r: "2",
+                        strokeWidth: "0.5",
+                        stroke: "#ffa726"
+                    }
+                }}
+                bezier
+                style={{
+                    marginVertical: 8,
+                    borderRadius: 16
+                }}
+            />
         }
-        </View>
+    </View>
     );
 
 

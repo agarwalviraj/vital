@@ -18,14 +18,16 @@ const LoginScreen = ({ navigation }) => {
     const [state, setState] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [token, setToken] = useState();
 
     useEffect(() => {
         AsyncStorage.getItem('token').then(value => {
             setState(value);
             //console.log('token',value);
         });
+        console.log(navigation);
         if(state!=null){
-            navigation.replace('Home');
+            navigation.reset({ routes: [{ name: 'Home' }] });
         }
         
        
@@ -34,6 +36,7 @@ const LoginScreen = ({ navigation }) => {
         .getToken()
         .then(token => {
           console.log('fcmtoken',token);
+          setToken(token);
         });
   
       // If using other push notification providers (ie Amazon SNS, etc)
@@ -49,7 +52,8 @@ const LoginScreen = ({ navigation }) => {
     const login = async (email, password) => {
         const data = {
             emailOrUsername: email,
-            password: password
+            password: password,
+            fcmtoken: token
         }
         console.log(data);
 
@@ -64,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
             AsyncStorage.setItem("email",email);
             console.log(email);
             
-            navigation.replace('Home');
+            navigation.reset({ routes: [{ name: 'Home' }] });
             // DevSettings.reload();
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -9,6 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import AlertScreen from '../screens/AlertScreen';
+import SplashScreen from '../screens/SplashScreen';
 import HomeScreen from '../screens/HomeScreen';
 import BloodScreen from '../screens/BloodScreen';
 import BPScreen from '../screens/BPScreen';
@@ -31,7 +33,8 @@ const Drawer = createDrawerNavigator();
 
 const HomeStack = ({ navigation }) => (
     
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='Home'>
+       
         <Stack.Screen name='Home' component={HomeScreen}
             options={{
                 headerTitleAlign: 'center',
@@ -280,10 +283,43 @@ const ProfileStack = ({ navigation }) => (
 
 const AppStack = ({ navigation }) => {
     return (
-        <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Navigator initialRouteName='Splash'
+        drawerContent={props => <DrawerContent
+        onPresslog={() => {
+            // const navigation1 = useNavigation();
+            //             navigation1.reset({
+            //                 index:0,
+            //                 routes:[{name:'Login'}],
+            //             });
+            navigation.replace('Login');
+        }}
+        {...props} />}>
+             <Drawer.Screen
+                name='Splash'
+                component={SplashScreen}
+                options={{ header: () => null }}
+            />
             <Drawer.Screen name="Home" component={HomeStack} />
             <Drawer.Screen name="Profile" component={ProfileStack} />
             <Drawer.Screen name="About" component={AboutScreen} />
+            <Drawer.Screen
+                name='Login'
+                component={LoginScreen}
+                options={{
+                    headerTitleAlign: 'center',
+                    headerBackAccessibilityLabel: 'null',
+                    headerTitleStyle: {
+
+
+                        fontSize: 18,
+                    },
+                    headerStyle: {
+                        backgroundColor: '#CDE8ED',
+                        shadowColor: '#fff',
+                        elevation: 19,
+                    },
+                }}
+            />
         </Drawer.Navigator>
     );
 };
