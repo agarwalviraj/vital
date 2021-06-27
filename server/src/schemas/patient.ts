@@ -33,8 +33,4 @@ export const PatientSchema: any = new mongoose.Schema({
     requied: true,
     match: [emailRegex, "Email in wrong format"],
   },
-  image: {
-    data: Buffer,
-    contentType: String,
-  },
 });

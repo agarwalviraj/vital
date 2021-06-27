@@ -20,4 +20,25 @@ export const UserSchema: any = new mongoose.Schema({
     minlength: 6,
     // select: false,
   },
+
+  name: {
+    type: String,
+    required: true,
+  },
+  qualifications: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  hospitalName: {
+    type: String,
+    required: true,
+  },
+  specialization: {
+    type: String,
+    required: true,
+  },
 });

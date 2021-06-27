@@ -14,7 +14,21 @@ app.post("/register", async (req: Request, res: Response) => {
     email,
     username,
     password,
-  }: { email: string; username: string; password: string } = req.body;
+    name,
+    qualifications,
+    description,
+    hospitalName,
+    specialization,
+  }: {
+    email: string;
+    username: string;
+    password: string;
+    name: String;
+    qualifications: String;
+    description: String;
+    hospitalName: String;
+    specialization: String;
+  } = req.body;
   const hashedPassword = await hash(password, 14);
 
   try {
@@ -22,6 +36,11 @@ app.post("/register", async (req: Request, res: Response) => {
       email,
       username,
       password: hashedPassword,
+      name,
+      qualifications,
+      description,
+      hospitalName,
+      specialization,
     });
     const dbResponse = await user.findOne({
       $or: [{ email: email }, { username: username }],
@@ -50,10 +69,12 @@ app.post("/login", async (req: Request, res: Response): Promise<void> => {
 
   if (dbResponse == null)
     res.json({ sucess: false, message: "User Does not exist" });
-  if (!(await compare(password, dbResponse.password)))
+  else if (!(await compare(password, dbResponse.password)))
     res.json({ sucess: false, message: "Invalid credentials" });
-  const jwt = await signJwt({ email: dbResponse.email });
-  res.json({ success: true, token: jwt });
+  else {
+    const jwt = await signJwt({ email: dbResponse.email });
+    res.json({ success: true, token: jwt });
+  }
 });
 
 app.get("/", async (req: any, res: Response): Promise<void> => {
