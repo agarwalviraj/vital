@@ -21,7 +21,7 @@ const Home = () => {
     <Layout>
       <div>
         {/* {patients[0] ? <PatientCard patient={patients[0]} /> : ""} */}
-        <div className="flex bg-blue-200 h-20 px-2 md:px-10 w-3/4 mx-auto rounded-lg shadow-sm mt-10">
+        <div  data-aos="fade-down" data-aos-duration="1500" className="flex bg-blue-200 h-20 px-2 md:px-10 w-3/4 mx-auto rounded-lg shadow-sm mt-10">
           <FiSearch className="px-2 w-1/6 lg:w-1/12 h-full py-6" />
           <input
             className="w-full bg-blue-200 focus:outline-none h-full text-xl"
@@ -33,7 +33,7 @@ const Home = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center flex-col">
+        <div data-aos="fade-up" data-aos-duration="1500" className="flex items-center justify-center flex-col">
           {patients
             ? patients.map((patient) => {
                 if (

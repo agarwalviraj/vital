@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 export const instance = axios.create({
-  baseURL: `http://localhost:3003/`,
+  baseURL: `https://hackvital.herokuapp.com`,
 });
 
 export const validateToken = async () => {

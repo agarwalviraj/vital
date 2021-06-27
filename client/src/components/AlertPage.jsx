@@ -3,6 +3,9 @@ import { AlertContext } from "../store/alertContext";
 import { IoAlertCircle } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
 import { useHistory } from "react-router";
+import AOS from "aos";
+import "aos/dist/aos.css"; 
+AOS.init();
 
 const AlertPage = ({ setDisplay }) => {
   const history = useHistory();
@@ -22,7 +25,7 @@ const AlertPage = ({ setDisplay }) => {
       {alerts
         ? alerts.map((alert) => {
             return (
-              <div
+              <div  data-aos="fade-up" data-aos-duration="1500"
                 key={alert._id}
                 className="px-4 py-6 border-2 border-red-600 mx-8 my-6 rounded-lg bg-red-400 bg-opacity-80 flex justify-between"
               >

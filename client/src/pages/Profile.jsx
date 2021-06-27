@@ -30,15 +30,15 @@ const Profile = () => {
     <Layout>
       {data ? (
         <div className="flex md:flex-row w-full items-center justify-center mt-40">
-          <div className="flex items-center flex-col">
-            <img
+          <div  data-aos="fade-right" data-aos-duration="1500" className="flex items-center flex-col">
+            <img data-aos="fade-right" data-aos-duration="1500"
               src={imgs}
               alt="doctorProfile"
               className="w-80 h-80 object-cover m-2 rounded-full "
             />
-            <span className="font-semibold text-2xl"> {data.name}</span>
+            <span data-aos="fade-right" data-aos-duration="1500" className="font-semibold text-2xl"> {data.name}</span>
           </div>
-          <div className="flex flex-col shadow-xl bg-blue-200 p-10 w-1/5 py-20 rounded-lg text-lg m-8 leading-6">
+          <div  data-aos="fade-left" data-aos-duration="1500" className="flex flex-col shadow-xl bg-blue-200 p-10 w-1/5 py-20 rounded-lg text-lg m-8 leading-6">
             <p className="my-2">
               <span className="font-semibold my-2">Qualifications:</span>
               {data.qualifications}

@@ -4,7 +4,9 @@ import { AuthContext } from "../store/authContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
-
+import AOS from 'aos';
+import "aos/dist/aos.css";
+AOS.init();
 const Register = ({ setRegister }) => {
   const handleErrors = (type, errors, touched) => {
     if (touched && errors && type)
@@ -39,7 +41,7 @@ const Register = ({ setRegister }) => {
     hospitalName: yup.string().required("Hospital Name is required"),
   });
   return (
-    <div>
+    <div data-aos="fade-left" data-aos-duration="1500">
       <Formik
         initialValues={{
           password: "",

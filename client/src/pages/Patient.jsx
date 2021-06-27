@@ -9,7 +9,9 @@ import Blood from "../assets/Blood.svg";
 import Heart from "../assets/Heart.svg";
 import Thermometer from "../assets/Thermometer.svg";
 import { AlertContext } from "../store/alertContext";
-
+import AOS from 'aos';
+import "aos/dist/aos.css";
+AOS.init();
 const Patient = () => {
   const { id } = useParams();
   const { getAlerts, addAlert } = useContext(AlertContext);
@@ -73,11 +75,11 @@ const Patient = () => {
   return (
     <Layout>
       {patient !== undefined ? (
-        <div
+        <div  
           key={patient._id}
           className="flex w-full flex-col xl:flex-row justify-evenly items-center xl:items-stretch lg:mt-10"
         >
-          <ul className="flex flex-col shadow-xl bg-blue-200 lg:w-2/5 m-2 p-4 md:p-8 rounded-lg lg:ml-32 items-center text-lg">
+          <ul  data-aos="fade-right" data-aos-duration="1500" className="flex flex-col shadow-xl bg-blue-200 lg:w-2/5 m-2 p-4 md:p-8 rounded-lg lg:ml-32 items-center text-lg">
             <img
               src={image2}
               alt="Profile"
@@ -132,7 +134,7 @@ const Patient = () => {
             </div>
           </ul>
 
-          <div className="flex flex-wrap items-center justify-center mt-4 ml-8">
+          <div  data-aos="fade-left" data-aos-duration="1500" className="flex flex-wrap items-center justify-center mt-4 ml-8">
             {patient.vitals
               ? patient.vitals.map((vital) => (
                   <div className="flex flex-col justify-center items-center">
