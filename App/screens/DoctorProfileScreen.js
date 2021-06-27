@@ -9,7 +9,8 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 
 const DoctorProfileScreen = () => {
-    const [name, setName] = useState('');
+    const [name, setName] = useState();
+    const [data1, setData1] = useState([]);
     useEffect(() => {
         const getEmail=(async()=>{
 
@@ -18,8 +19,8 @@ const DoctorProfileScreen = () => {
         // const res= await Axios.get(`https://hackvital.herokuapp.com/authorize`,jwtOBJ)
         // console.log(res);
         const email =await AsyncStorage.getItem("email");
-        const name1 = await Axios.get(`https://hackvital.herokuapp.com/user/?DrMail==${email}`);
-            setName(name1.data);
+        const name1 = await Axios.get(`https://hackvital.herokuapp.com/user/?DrMail=${email}`);
+            setData1(name1.data);
             console.log(name1.data);
            
         })
@@ -35,7 +36,7 @@ const DoctorProfileScreen = () => {
             />
 
 
-            <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 30,color:'#28527A' }}>Dr.Jhon Doe</Text>
+            <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 30,color:'#28527A' }}>{data1.name}</Text>
 
             <Neomorph
                 darkShadowColor="#afe4" // <- set this
@@ -47,7 +48,7 @@ const DoctorProfileScreen = () => {
                     borderRadius: 30,
                     padding: 25,
                     backgroundColor: '#CDE8ED',
-                    width: 0.65 * windowWidth,
+                    width: 0.7 * windowWidth,
                     height: 300,
                 }}
             >
@@ -78,22 +79,22 @@ const DoctorProfileScreen = () => {
                 <View style={{ marginLeft: 15 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.text}>Age: </Text>
-                        <Text style={styles.subText}>29</Text>
+                        <Text style={styles.subText}>{data1.age}</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop:16 }}>
                         <Text style={styles.text}>Qualifications: </Text>
-                        <Text style={styles.subText}>MBBS</Text>
+                        <Text style={styles.subText}>{data1.qualifications}</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row',  marginTop:16}}>
                         <Text style={styles.text}>Specialization: </Text>
-                        <Text style={styles.subText}>ENT</Text>
+                        <Text style={styles.subText}>{data1.specialization}</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop:16 }}>
                         <Text style={styles.text}>Experience: </Text>
-                        <Text style={styles.subText}>5 years- ABC Hospital, Mumbai</Text>
+                        <Text style={styles.subText}>{data1.hospitalName}</Text>
                     </View>
                 </View>
             </Neomorph>

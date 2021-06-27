@@ -3,12 +3,15 @@
  */
 
 import {AppRegistry} from 'react-native';
+import { LogBox } from 'react-native';
 import App from './App';
 import CreateChannelId from './components/CreateChannelId';
 import {name as appName} from './app.json';
 import { sendMessage } from './components/Notifications';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage'
+
+LogBox.ignoreLogs(['Warning: ...']);
 
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {

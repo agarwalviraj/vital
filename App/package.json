@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "node ./android/fixAndroid/android-release-fix.js"
   },
   "dependencies": {
     "@rainbow-me/animated-charts": "^1.0.0-alpha.5",
@@ -31,7 +32,6 @@
     "react-native-dotenv": "^2.6.2",
     "react-native-dynamic-graph": "0.0.16",
     "react-native-elements": "^3.4.2",
-    "react-native-firebase": "^5.6.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-neomorph-shadows": "^1.1.2",
     "react-native-onboarding-swiper": "^1.1.4",
@@ -39,7 +39,6 @@
     "react-native-push-notification": "^7.3.1",
     "react-native-radial-gradient": "^1.0.8",
     "react-native-reanimated": "^2.2.0",
-    "react-native-recharts": "0.0.1",
     "react-native-responsive-linechart": "^5.7.1",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.3.0",
@@ -58,6 +57,7 @@
     "babel-preset-react-native": "^2.1.0",
     "eslint": "7.14.0",
     "jest": "^26.6.3",
+    "jetifier": "^2.0.0",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "17.0.1"

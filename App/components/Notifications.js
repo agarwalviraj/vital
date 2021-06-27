@@ -14,8 +14,8 @@ export function sendMessage(id, notifName, notifDesc) {
             title: notifName, // (optional)
             message: `Blood pressure: ${notifDesc}`, // (required)
             date: new Date(Date.now() + 1 * 1000),
-            playSound: false, // (optional) default: true
-            soundName: "default", // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+            playSound: true, // (optional) default: true
+            soundName: "alert_notification.mp3", // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
 
         })
         PushNotification.configure({

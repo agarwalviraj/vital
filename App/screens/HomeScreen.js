@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button, FlatList, ListHeader, TouchableOpacity, ScrollView, TextInput, ItemSeparatorComponent } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, ListHeader, TouchableOpacity, ScrollView, TextInput, ItemSeparatorComponent, LogBox } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
 import { SearchBar } from 'react-native-elements';
@@ -29,6 +29,8 @@ const HomeScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
+        LogBox.ignoreLogs(['Warning: ...']);
+
         const getEmail=(async()=>{
 
         // const token =await AsyncStorage.getItem("token")

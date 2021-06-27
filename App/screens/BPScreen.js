@@ -62,6 +62,12 @@ const updateData = useCallback(
     return (
 
         <View style={Globalstyles.container}>
+             <Text style={{fontSize: 35, 
+                marginBottom:30,
+        fontWeight: '600',
+        color:'#28527A',
+        fontFamily:'Poppins-SemiBold',
+        fontWeight:'600',}}>Realtime Graph</Text>
 
         {value1.length == 6 ? setValue1(value1.slice(1)) : null}
         {time1.length == 6 ? setTime1(time1.slice(1)) : null}

@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text,Image } from 'react-native';
+import { View, Text,Image,LogBox } from 'react-native';
 import {windowWidth,windowHeight} from '../utils/Dimensions';
 
 class SplashScreen extends React.Component {
+
   performTimeConsumingTask = async() => {
     return new Promise((resolve) =>
       setTimeout(
@@ -13,6 +14,8 @@ class SplashScreen extends React.Component {
   }
 
   async componentDidMount() {
+    LogBox.ignoreLogs(['Warning: ...']);
+
     // Preload data from an external API
     // Preload data using AsyncStorage
     const data = await this.performTimeConsumingTask();

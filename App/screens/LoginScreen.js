@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Card, TextInput, Image, DevSettings, Platform,LogBox } from 'react-native';
 import { windowWidth, windowHeight } from '../utils/Dimensions';
 import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialButton';
@@ -11,7 +11,6 @@ import {alertpatients1} from '../patients/AlertPatients1';
 import messaging from '@react-native-firebase/messaging';
 
 // I am using Device info
-import firebase from '../utils/firebase';
 
 
 const LoginScreen = ({ navigation }) => {
@@ -21,14 +20,21 @@ const LoginScreen = ({ navigation }) => {
     const [token, setToken] = useState();
 
     useEffect(() => {
+        LogBox.ignoreLogs(['Warning: ...']);
+
         AsyncStorage.getItem('token').then(value => {
-            setState(value);
-            //console.log('token',value);
+            
+            
+            console.log('token',value);
+            if(value){
+                console.log('login',value)
+                navigation.reset({ routes: [{ name: 'Home' }] });
+            }
         });
-        console.log(navigation);
-        if(state!=null){
-            navigation.reset({ routes: [{ name: 'Home' }] });
-        }
+      
+        //console.log(navigation);
+        //console.log('token1',state);
+        
         
        
 
@@ -67,8 +73,9 @@ const LoginScreen = ({ navigation }) => {
             AsyncStorage.setItem("token", response.data.token)
             AsyncStorage.setItem("email",email);
             console.log(email);
-            
+            if(response.data.success){
             navigation.reset({ routes: [{ name: 'Home' }] });
+            }
             // DevSettings.reload();
 
 
