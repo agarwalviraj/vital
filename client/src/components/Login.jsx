@@ -3,9 +3,10 @@ import { handleLogin } from "../utils/api";
 import { AuthContext } from "../store/authContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
-import AOS from 'aos';
+import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
+
 const Login = ({ setRegister }) => {
   const { login } = useContext(AuthContext);
   const validationSchema = yup.object({

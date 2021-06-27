@@ -11,7 +11,9 @@ export function SocketProvider({ children }) {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    const newSocket = io("https://hackvital.herokuapp.com", {
+    // const url = "https://hackvital.herokuapp.com"
+    const url = "http://localhost:3003";
+    const newSocket = io(url, {
       transports: ["websocket"],
       upgrade: false,
     });

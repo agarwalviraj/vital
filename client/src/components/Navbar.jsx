@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-
 import { GoAlert } from "react-icons/go";
 import vital from "../assets/vital.svg";
 import { Link } from "react-router-dom";
@@ -26,6 +25,9 @@ const Navbar = () => {
             <Link to="/profile" className="cursor-pointer px-8">
               Profile
             </Link>
+            <Link to="/aboutus" className="cursor-pointer px-8">
+              About us
+            </Link>
             <li className="cursor-pointer px-8" onClick={signOut}>
               Sign out
             </li>
@@ -33,7 +35,7 @@ const Navbar = () => {
         </nav>
       </header>
       <button
-        className="bottom-0 right-0 fixed m-8 p-8 text-5xl text-red-600 focus:outline-none z-30"
+        className="bottom-0 right-0 fixed md:m-4 p-8  text-5xl text-red-600 focus:outline-none z-30"
         onClick={() => {
           setDisplay(!display);
         }}

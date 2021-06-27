@@ -17,7 +17,7 @@
 @layer base {
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
   * {
-    font-family: "Nunito Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
 
@@ -41,5 +41,8 @@
   }
   .patient-details:li:span {
     @apply text-black;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

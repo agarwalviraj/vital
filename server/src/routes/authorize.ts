@@ -4,8 +4,9 @@ import { verifyJwt } from "../utils/jwtService";
 const app = express();
 app.use(express.json());
 
-app.get("/", async (req: Request, res: Response) => {
+app.post("/", async (req: Request, res: Response) => {
   const jwt = req.body.jwt;
+
   try {
     const verifyResponse = await verifyJwt(jwt);
     if (verifyResponse) {

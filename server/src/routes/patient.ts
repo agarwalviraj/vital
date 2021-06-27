@@ -27,7 +27,6 @@ app.post("/add", async (req: Request, res: Response) => {
     vitals: string[];
     Doctor: string;
   } = req.body;
-  console.log(name);
 
   try {
     const newPatient = new patient({

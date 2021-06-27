@@ -41,4 +41,10 @@ export const UserSchema: any = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imagePath: {
+    type: String,
+  },
+  tokens: {
+    type: [String],
+  },
 });

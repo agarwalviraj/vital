@@ -1,13 +1,19 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 export const instance = axios.create({
-  baseURL: `https://hackvital.herokuapp.com`,
+  // baseURL: `https://hackvital.herokuapp.com/`,
+  baseURL: `http://localhost:3003/`,
 });
+const handleError = (msg) => {
+  console.log(msg);
+  toast.dark(msg);
+};
 
 export const validateToken = async () => {
   const token = { jwt: localStorage.getItem("id") };
   try {
     const res = await instance.post(`/authorize`, token);
+    console.log(res.data);
     if (!res.data.success) {
       handleError(res.data.message);
       return res.data;
@@ -82,6 +88,7 @@ export const fetchDoctorInfo = async () => {
       email = tokenVerify.values.email;
     }
     const res = await instance.get(`/user/?DrMail=${email}`);
+    console.log(res.files);
     if (!res.data.success) {
       handleError(res.data.message);
     }
@@ -133,8 +140,4 @@ export const deleteAlert = async (payload) => {
   } catch (err) {
     handleError(err);
   }
-};
-
-const handleError = (msg) => {
-  toast.error(msg);
 };

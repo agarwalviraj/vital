@@ -65,11 +65,12 @@ const PatientCard = ({ patient }) => {
   return (
     <div
       key={_id + "mainDiv"}
-      className="flex flex-col xl:flex-row justify-around items-center bg-blue-200 py-5 px-2 sm:px-10 mt-10 w-11/12 mx-4 md:mx-12 rounded-lg shadow-lg"
+      className="flex flex-col mb:0 xl:flex-row justify-around items-center bg-blue-200 py-5 px-2 sm:px-10 mt-10 w-11/12 mx-4 md:mx-12 rounded-lg shadow-lg"
     >
       <div className="flex">
         <img
-          src={image2}
+          // src={`https://hackvital.herokuapp.com/${name}.jpg`}
+          src={`http://localhost:3003/${name}.jpg`}
           alt="Profile"
           className="w-28 h-28 object-cover m-2 ml-0 rounded-full "
         />
@@ -95,7 +96,7 @@ const PatientCard = ({ patient }) => {
               return (
                 <div
                   key={_id + vital + name}
-                  className="bg-gray-300 mx-4 lg:mx-2 lg:my-2 my-4 w-32 sm:w-40 h-32 sm:h-40 flex items-center rounded-xl shadow-lg flex-col pt-4"
+                  className="bg-blue-100 mx-4 lg:mx-2 lg:mt-2 mt-4 w-32 sm:w-40 h-32 sm:h-40 flex items-center rounded-xl shadow-lg flex-col pt-4"
                 >
                   {vital === "BloodPressure" ? (
                     <img src={Blood} alt="Blood" />
@@ -105,7 +106,10 @@ const PatientCard = ({ patient }) => {
                     <img src={Thermometer} alt="thermo" />
                   ) : null}
                   {vital === "HeartRate" ? <img src={Beat} alt="Beat" /> : null}
-                  <span className="mx-auto my-auto">{data[vital]}</span>
+                  <span className="mx-auto my-auto flex flex-col items-center">
+                    <span className="text-sm">{vital}</span>
+                    {data[vital]}
+                  </span>
                 </div>
               );
             })

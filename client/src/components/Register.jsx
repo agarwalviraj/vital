@@ -1,26 +1,14 @@
-import React, { useContext } from "react";
-import { handleLogin, handleRegister } from "../utils/api";
-import { AuthContext } from "../store/authContext";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useHistory } from "react-router-dom";
-import * as yup from "yup";
-import AOS from 'aos';
+import AOS from "aos";
 import "aos/dist/aos.css";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React, { useContext } from "react";
+import * as yup from "yup";
+import { AuthContext } from "../store/authContext";
+import { handleRegister } from "../utils/api";
 AOS.init();
-const Register = ({ setRegister }) => {
-  const handleErrors = (type, errors, touched) => {
-    if (touched && errors && type)
-      if (touched[type] && errors[type]) {
-        return (
-          <span className="text-red-500 font-medium text-sm mt-1 capitalize">
-            {errors[type]}
-          </span>
-        );
-      }
-  };
 
+const Register = ({ setRegister }) => {
   const { login } = useContext(AuthContext);
-  const history = useHistory();
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -140,7 +128,7 @@ const Register = ({ setRegister }) => {
                 type="submit"
                 className="actionBtn self-center mt-4"
               >
-                {isSubmitting ? "loading" : "Log In"}
+                {isSubmitting ? "loading" : "Register"}
               </button>
               <footer className="cursor-default text-center mt-2">
                 Already have an account?&nbsp;

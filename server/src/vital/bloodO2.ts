@@ -7,9 +7,10 @@ const bloodO2 = createModel("BloodO2");
 const allBloodO2Sockets = (
   socket: Socket,
   upRange: number,
-  lowRange: number
+  lowRange: number,
+  critical: number[]
 ) => {
-  generic(bloodO2, "BloodO2", socket, upRange, lowRange);
+  generic(bloodO2, "BloodO2", socket, upRange, lowRange, critical);
 };
 
 export default allBloodO2Sockets;

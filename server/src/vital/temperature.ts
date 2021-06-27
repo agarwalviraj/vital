@@ -7,9 +7,10 @@ const temperatureModel = createModel("Temperature");
 const allTemperauteSockets = (
   socket: Socket,
   upRange: number,
-  lowRange: number
+  lowRange: number,
+  critical: number[]
 ) => {
-  generic(temperatureModel, "Temperature", socket, upRange, lowRange);
+  generic(temperatureModel, "Temperature", socket, upRange, lowRange, critical);
 };
 
 export default allTemperauteSockets;

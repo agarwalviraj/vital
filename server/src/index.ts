@@ -11,10 +11,10 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.static("public"));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3003"],
     credentials: true,
   },
 });
@@ -25,10 +25,10 @@ mongoose.connect(process.env.MONGODB_URI!, {
 });
 
 io.on("connection", (socket) => {
-  heartRate(socket, 120, 50);
-  bloodPressure(socket, 120, 80);
-  bloodO2(socket, 92, 100);
-  temperature(socket, 98, 104);
+  heartRate(socket, 120, 50, [60, 100]);
+  bloodPressure(socket, 120, 80, [60, 110]);
+  bloodO2(socket, 92, 100, [95, 99]);
+  temperature(socket, 98, 104, [97, 98]);
 });
 
 // app.use("/authorize", authorize);

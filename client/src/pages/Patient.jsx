@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Chart, Layout } from "../components";
-import { fetchPatients } from "../utils/api";
-import image2 from "../assets/doctorimg.png";
-import { useSocket } from "../store/socketContext";
 import Beat from "../assets/Beat.svg";
 import Blood from "../assets/Blood.svg";
+import image2 from "../assets/doctorimg.png";
 import Heart from "../assets/Heart.svg";
 import Thermometer from "../assets/Thermometer.svg";
+import { Chart, Layout } from "../components";
 import { AlertContext } from "../store/alertContext";
-import AOS from 'aos';
+import { fetchPatients } from "../utils/api";
+import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
+
 const Patient = () => {
   const { id } = useParams();
   const { getAlerts, addAlert } = useContext(AlertContext);
@@ -22,47 +22,6 @@ const Patient = () => {
     HeartRate: 0,
   });
   const [patient, setPatient] = useState();
-  const updateData = useCallback(
-    (newData, vitalName) => {
-      const newObj = data;
-      newObj[vitalName] = newData.value;
-      if (newData.value < 60) {
-        addAlert({
-          message: `${vitalName} of ${patient.name} is below critical level`,
-          PatientId: patient._id,
-        });
-      }
-      setData((oldData) => ({ ...oldData, ...newObj }));
-    },
-    [setData]
-  );
-  const socket = useSocket();
-  useEffect(() => {
-    if (socket && patient) {
-      if (patient.vitals.includes("BloodPressure"))
-        socket.on(`${patient.name}BloodPressure`, (newData) => {
-          updateData(newData, "BloodPressure");
-        });
-
-      if (patient.vitals.includes("BloodO2"))
-        socket.on(`${patient.name}BloodO2`, (newData) => {
-          updateData(newData, "BloodO2");
-        });
-
-      if (patient.vitals.includes("Temperature"))
-        socket.on(`${patient.name}Temperature`, (newData) => {
-          updateData(newData, "Temperature");
-        });
-
-      if (patient.vitals.includes("HeartRate"))
-        socket.on(`${patient.name}HeartRate`, (newData) => {
-          updateData(newData, "HeartRate");
-        });
-
-      // socket.on("TimBloodPressure", (newData) => updateData(newData));
-      return () => socket.off();
-    }
-  }, [socket, updateData]);
 
   useEffect(() => {
     const func = async () => {
@@ -75,13 +34,18 @@ const Patient = () => {
   return (
     <Layout>
       {patient !== undefined ? (
-        <div  
+        <div
           key={patient._id}
           className="flex w-full flex-col xl:flex-row justify-evenly items-center xl:items-stretch lg:mt-10"
         >
-          <ul  data-aos="fade-right" data-aos-duration="1500" className="flex flex-col shadow-xl bg-blue-200 lg:w-2/5 m-2 p-4 md:p-8 rounded-lg lg:ml-32 items-center text-lg">
+          <ul
+            data-aos="fade-right"
+            data-aos-duration="1500"
+            className="flex flex-col shadow-xl bg-blue-200 lg:w-2/5 m-2 p-4 md:p-8 rounded-lg lg:ml-32 items-center text-lg"
+          >
             <img
-              src={image2}
+              // src={`https://hackvital.herokuapp.com/${patient.name}.jpg`}
+              src={`http://localhost:3003/${patient.name}.jpg`}
               alt="Profile"
               className="w-24 h-24 object-cover m-2 rounded-full"
             />
@@ -112,7 +76,7 @@ const Patient = () => {
                     return (
                       <div
                         key={patient._id + vital + patient.name}
-                        className="bg-gray-300 mx-4 lg:mx-3 lg:my-2 my-4 w-24 sm:w-36 h-32 sm:h-36 flex items-center rounded-xl shadow-lg flex-col pt-4"
+                        className="bg-blue-100 mx-4 lg:mx-3 lg:my-2 my-4 w-24 sm:w-36 h-32 sm:h-36 flex items-center rounded-xl shadow-lg flex-col pt-4"
                       >
                         {vital === "BloodPressure" ? (
                           <img src={Blood} alt="Blood" />
@@ -134,7 +98,11 @@ const Patient = () => {
             </div>
           </ul>
 
-          <div  data-aos="fade-left" data-aos-duration="1500" className="flex flex-wrap items-center justify-center mt-4 ml-8">
+          <div
+            ata-aos="fade-left"
+            data-aos-duration="1500"
+            className="flex flex-wrap items-center justify-center mt-4 ml-8"
+          >
             {patient.vitals
               ? patient.vitals.map((vital) => (
                   <div className="flex flex-col justify-center items-center">
@@ -143,6 +111,9 @@ const Patient = () => {
                       width={380}
                       height={200}
                       className="m-4"
+                      setBoxData={setData}
+                      boxData={data}
+                      vital={vital}
                     />
                     <div className="text-lg font-semibold mb-4">{vital}</div>
                   </div>

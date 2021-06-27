@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchAlerts, postAlert } from "../utils/api";
+import { toast } from "react-toastify";
 export const AlertContext = React.createContext({
   Alerts: [],
   addAlert: (alert) => {},
@@ -12,7 +13,7 @@ const AlertContextProvider = ({ children }) => {
   };
 
   const addAlert = async (newAlert) => {
-    postAlert(newAlert);
+    // postAlert(newAlert);
     setAlerts(await fetchAlerts());
   };
   return (

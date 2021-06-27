@@ -2,7 +2,15 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts";
 import { useSocket } from "../store/socketContext";
 
-const Chart = ({ socketName, className, width, height }) => {
+const Chart = ({
+  socketName,
+  className,
+  width,
+  height,
+  setBoxData,
+  boxData,
+  vital,
+}) => {
   const socket = useSocket();
   const [data, setData] = useState([]);
 
@@ -10,8 +18,12 @@ const Chart = ({ socketName, className, width, height }) => {
     (newData) => {
       const newObj = newData;
       setData((oldData) => [...oldData, newObj]);
+
+      const newBoxData = boxData;
+      newBoxData[vital] = newData.value;
+      setBoxData((oldBoxData) => ({ ...oldBoxData, ...newBoxData }));
     },
-    [setData]
+    [setData, setBoxData, vital]
   );
   useEffect(() => {
     if (socket) {
@@ -41,7 +53,7 @@ const Chart = ({ socketName, className, width, height }) => {
         <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#F87677" }} />
 
         <Area
-          type="linear"
+          type="natural"
           dataKey="value"
           stroke="#28527A"
           fillOpacity={1}

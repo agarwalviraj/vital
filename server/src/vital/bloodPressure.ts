@@ -7,9 +7,17 @@ const bloodPressureModel = createModel("BloodPressure");
 const allBloodPressureSockets = (
   socket: Socket,
   upRange: number,
-  lowRange: number
+  lowRange: number,
+  critical: number[]
 ) => {
-  generic(bloodPressureModel, "BloodPressure", socket, upRange, lowRange);
+  generic(
+    bloodPressureModel,
+    "BloodPressure",
+    socket,
+    upRange,
+    lowRange,
+    critical
+  );
 };
 
 export default allBloodPressureSockets;
