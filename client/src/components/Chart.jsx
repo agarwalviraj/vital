@@ -1,14 +1,5 @@
-import React from "react";
-import { useEffect, useState, useCallback } from "react";
-import io from "socket.io-client";
-import {
-  AreaChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Area,
-} from "recharts";
+import React, { useCallback, useEffect, useState } from "react";
+import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts";
 import { useSocket } from "../store/socketContext";
 
 const Chart = ({ socketName, className, width, height }) => {
@@ -16,7 +7,7 @@ const Chart = ({ socketName, className, width, height }) => {
   const [data, setData] = useState([]);
 
   const updateData = useCallback(
-    (newData, vitalName) => {
+    (newData) => {
       const newObj = newData;
       setData((oldData) => [...oldData, newObj]);
     },
@@ -31,7 +22,7 @@ const Chart = ({ socketName, className, width, height }) => {
 
   return (
     <div className={className ? className : null}>
-      {data.length === 6 ? setData(data.slice(1)) : null}
+      {data.length >= 6 ? setData(data.slice(1)) : null}
       <AreaChart
         width={width ? width : 200}
         height={height ? height : 100}
@@ -45,12 +36,12 @@ const Chart = ({ socketName, className, width, height }) => {
           </linearGradient>
         </defs>
         <XAxis dataKey="time" />
-        <YAxis />
-        <CartesianGrid strokeDasharray="6 3" />
+        <YAxis domain={[80, 120]} />
+        {/* <CartesianGrid strokeDasharray="6 3" /> */}
         <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#F87677" }} />
 
         <Area
-          type="natural"
+          type="linear"
           dataKey="value"
           stroke="#28527A"
           fillOpacity={1}

@@ -33,8 +33,8 @@ const Login = ({ setRegister }) => {
       >
         {(values, errors, touched, handleChange, isSubmitting) => {
           return (
-            <Form className="flex flex-col px-4 md:px-20 py-10 max-w-xl border-2 border-secondary m-auto rounded-lg">
-              <h1 className="text-center w-full mx-auto p-4 text-5xl text-secondary">
+            <Form className="flex flex-col px-8 lg:px-20 py-10 max-w-xl border-2 border-secondary m-auto rounded-lg h-full shadow-xl">
+              <h1 className="text-center w-full mx-auto p-4 mb-6 text-5xl text-secondary">
                 Login To <span className="text-red-600">Vital+</span>
               </h1>
               <label htmlFor="email" className="">

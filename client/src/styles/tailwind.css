@@ -15,7 +15,7 @@
 
 /* Your own custom utilities */
 @layer base {
-  @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
   * {
     font-family: "Nunito Sans", sans-serif;
   }
@@ -25,6 +25,7 @@
   .textInput {
     @apply w-full;
     @apply border-b-2 border-secondary rounded-sm;
+    @apply bg-primary focus:outline-none;
   }
   .actionBtn {
     @apply select-none;
@@ -37,5 +38,8 @@
     @apply w-max;
     @apply focus:outline-none;
     @apply transition-colors hover:bg-secondary hover:text-white cursor-pointer;
+  }
+  .patient-details:li:span {
+    @apply text-black;
   }
 }

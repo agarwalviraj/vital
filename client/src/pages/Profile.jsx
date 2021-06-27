@@ -20,24 +20,44 @@ const Profile = () => {
   useEffect(() => {
     const func = async () => {
       const result = await fetchDoctorInfo();
-      if (result) {
-        setData(result);
-      }
+      console.log(result);
+      setData((oldData) => ({ ...oldData, ...result }));
+      console.log(data);
     };
     func();
   }, []);
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row w-full justify-around items-center">
-        <img src={imgs} alt="doctorProfile" />
-        <div className="border-4 border-secondary m-8 md:m-2 pl-8 pr-40 py-20 w-max">
-          <p>Name: {data.name}</p>
-          <p>Qualifications: {data.qualifications}</p>
-          <p>Description: {data.description}</p>
-          <p>Hospital Name: {data.hospitalName}</p>
-          <p>Specialization: {data.specialization}</p>
+      {data ? (
+        <div className="flex md:flex-row w-full items-center justify-center mt-40">
+          <div className="flex items-center flex-col">
+            <img
+              src={imgs}
+              alt="doctorProfile"
+              className="w-80 h-80 object-cover m-2 rounded-full "
+            />
+            <span className="font-semibold text-2xl"> {data.name}</span>
+          </div>
+          <div className="flex flex-col shadow-xl bg-blue-200 p-10 w-1/5 py-20 rounded-lg text-lg m-8 leading-6">
+            <p className="my-2">
+              <span className="font-semibold my-2">Qualifications:</span>
+              {data.qualifications}
+            </p>
+            <p className="my-2">
+              <span className="font-semibold my-2">Description: </span>
+              {data.description}
+            </p>
+            <p className="my-2">
+              <span className="font-semibold my-2">Hospital Name: </span>
+              {data.hospitalName}
+            </p>
+            <p className="my-2">
+              <span className="font-semibold my-2">Specialization: </span>
+              {data.specialization}
+            </p>
+          </div>
         </div>
-      </div>
+      ) : null}
     </Layout>
   );
 };

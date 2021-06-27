@@ -1,16 +1,21 @@
 import React, { useState, useContext } from "react";
 import { GoAlert } from "react-icons/go";
-import vital from "../assets/Logovital.png";
+import vital from "../assets/vital.svg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../store/authContext";
+import AlertPage from "./AlertPage";
 const Navbar = () => {
   const [display, setDisplay] = useState(false);
   const { signOut } = useContext(AuthContext);
   return (
-    <div>
-      <header className="flex md:flex-row flex-col justify-between mt-2 px-20 items-center">
-        <Link to="/" className="w-24 mb-8 cursor-pointer my-auto">
-          <img src={vital} alt="Logo" />
+    <div className="font-semibold">
+      <header className="flex md:flex-row flex-col justify-between pt-2 px-20 items-center">
+        <Link to="/" className=" mb-8 cursor-pointer my-auto">
+          <img
+            src={vital}
+            alt="Logo"
+            className=" object-cover object-left w-64 h-10 mt-10"
+          />
         </Link>
         <nav>
           <ul className="flex w-full p-4">
@@ -27,13 +32,14 @@ const Navbar = () => {
         </nav>
       </header>
       <button
-        className="bottom-0 right-0 fixed m-8 p-8 text-5xl text-red-600"
+        className="bottom-0 right-0 fixed m-8 p-8 text-5xl text-red-600 focus:outline-none z-30"
         onClick={() => {
-          setDisplay(true);
+          setDisplay(!display);
         }}
       >
         <GoAlert />
       </button>
+      {display ? <AlertPage setDisplay={setDisplay} /> : null}
     </div>
   );
 };

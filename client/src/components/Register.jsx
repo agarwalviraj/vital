@@ -64,65 +64,74 @@ const Register = ({ setRegister }) => {
       >
         {(values, errors, touched, handleChange, isSubmitting) => {
           return (
-            <Form className="flex flex-col px-4 md:px-20 py-10 max-w-xl border-2 border-secondary m-auto rounded-lg">
+            <Form className="flex flex-col px-8 lg:px-20 py-10 max-w-xl border-2 border-secondary m-auto rounded-lg h-full">
+              <h1 className="text-center w-full mx-auto p-4 mb-6 text-5xl text-secondary">
+                Register To <span className="text-red-600">Vital+</span>
+              </h1>
               <label htmlFor="email" className="">
                 Email
+                <Field type="email" name="email" className="textInput"></Field>
+              </label>
+              <ErrorMessage name="email" />
+              <label htmlFor="name" className="mt-4">
+                Name
+                <Field type="text" name="name" className="textInput"></Field>
+              </label>
+              <ErrorMessage name="name" />
+              <label htmlFor="username" className="mt-4">
+                Username
                 <Field
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="username"
                   className="textInput"
                 ></Field>
               </label>
-              <ErrorMessage name="email" />
-              <Field
-                placeholder="Name"
-                type="text"
-                name="name"
-                className="textInput"
-              ></Field>
-              <ErrorMessage name="name" />
-              <Field
-                placeholder="Username"
-                type="text"
-                name="username"
-                className="textInput"
-              ></Field>
               <ErrorMessage name="username" />
               {/* {("username", errors, touched)} */}
-              <Field
-                placeholder="Password"
-                type="password"
-                name="password"
-                className="textInput"
-              ></Field>
+              <label htmlFor="password" className="mt-4">
+                Password
+                <Field
+                  type="password"
+                  name="password"
+                  className="textInput"
+                ></Field>
+              </label>
               <ErrorMessage name="password" />
-              <Field
-                placeholder="Qualifications"
-                type="text"
-                name="qualifications"
-                className="textInput"
-              ></Field>
+              <label htmlFor="qualifications" className="mt-4">
+                Qualifications
+                <Field
+                  type="text"
+                  name="qualifications"
+                  className="textInput"
+                ></Field>
+              </label>
               <ErrorMessage name="qualifications" />
-              <Field
-                placeholder="Specializations"
-                type="text"
-                name="specialization"
-                className="textInput"
-              ></Field>
+              <label htmlFor="specializations" className="mt-4">
+                Specialization
+                <Field
+                  type="text"
+                  name="specialization"
+                  className="textInput"
+                ></Field>
+              </label>
               <ErrorMessage name="specialization" />
-              <Field
-                placeholder="Hospital Name"
-                type="text"
-                name="hospitalName"
-                className="textInput"
-              ></Field>
+              <label htmlFor="hospitalName" className="mt-4">
+                Hospital Name
+                <Field
+                  type="text"
+                  name="hospitalName"
+                  className="textInput"
+                ></Field>
+              </label>
               <ErrorMessage name="hospitalName" />
-              <Field
-                placeholder="Description"
-                type="text"
-                name="description"
-                className="textInput"
-              ></Field>
+              <label htmlFor="description" className="mt-4">
+                Description
+                <Field
+                  type="text"
+                  name="description"
+                  className="textInput"
+                ></Field>
+              </label>
               <ErrorMessage name="description" />
               <button
                 disabled={isSubmitting}

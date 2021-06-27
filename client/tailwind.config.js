@@ -8,10 +8,11 @@ module.exports = {
       colors: {
         primary: "#E3F2FF",
         secondary: "#28527A",
-        tertiary: "#F9AA28",
+        tertiary: "#5288BC",
         lightGray: "#F2F2F2",
         darkGray: "#9699A3",
         backdrop: "#000000BB",
+        redAlert: "#EF5874",
       },
       minWidth: {
         "1": "0.25rem",
