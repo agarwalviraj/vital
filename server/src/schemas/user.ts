@@ -18,6 +18,6 @@ export const UserSchema: any = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 6,
+    // select: false,
   },
-  patients: [String],
 });

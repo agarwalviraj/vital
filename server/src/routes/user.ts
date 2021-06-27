@@ -14,9 +14,7 @@ app.post("/register", async (req: Request, res: Response) => {
     email,
     username,
     password,
-    patients,
-  }: { email: string; username: string; password: string; patients: string[] } =
-    req.body;
+  }: { email: string; username: string; password: string } = req.body;
   const hashedPassword = await hash(password, 14);
 
   try {
@@ -24,12 +22,10 @@ app.post("/register", async (req: Request, res: Response) => {
       email,
       username,
       password: hashedPassword,
-      patients,
     });
     const dbResponse = await user.findOne({
       $or: [{ email: email }, { username: username }],
     });
-    console.log(dbResponse);
     if (dbResponse === null) {
       newUser.save((err: any) => {
         if (err) {
@@ -50,12 +46,20 @@ app.post("/login", async (req: Request, res: Response): Promise<void> => {
   const dbResponse: any = await user.findOne({
     $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
   });
+  console.log(dbResponse);
+
   if (dbResponse == null)
     res.json({ sucess: false, message: "User Does not exist" });
   if (!(await compare(password, dbResponse.password)))
     res.json({ sucess: false, message: "Invalid credentials" });
-  const jwt = await signJwt({ emailOrUsername });
+  const jwt = await signJwt({ email: dbResponse.email });
   res.json({ success: true, token: jwt });
+});
+
+app.get("/", async (req: any, res: Response): Promise<void> => {
+  const { DrMail }: { DrMail: string } = req.query;
+  const result = await user.findOne({ email: DrMail });
+  res.json(result);
 });
 
 export default app;

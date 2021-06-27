@@ -1,4 +1,2 @@
-import bloodPressure from "./bloodPressure";
-import heartRate from "./heartRate";
-
-export { bloodPressure, heartRate };
+export { default as bloodPressure } from "./bloodPressure";
+export { default as heartRate } from "./heartRate";

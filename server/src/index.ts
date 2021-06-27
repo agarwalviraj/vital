@@ -3,7 +3,7 @@ import express from "express";
 import * as http from "http";
 import mongoose from "mongoose";
 import { Server } from "socket.io";
-import { bloodPressure, heartRate } from "./vital/index";
+import { bloodPressure, heartRate } from "./vital";
 import api from "./routes";
 
 dotenv.config();
@@ -23,8 +23,8 @@ mongoose.connect(process.env.MONGODB_URI!, {
 });
 
 io.on("connection", (socket) => {
-  bloodPressure(socket, 120, 80);
   heartRate(socket, 120, 50);
+  bloodPressure(socket, 120, 80);
 });
 
 // app.use("/authorize", authorize);
